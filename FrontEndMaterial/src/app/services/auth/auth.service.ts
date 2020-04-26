@@ -13,8 +13,7 @@ const tokenName = "token";
 export class AuthService {
   private isLogged$ = new BehaviorSubject(false);
   private url = `${environment.apiBaseUrl}/api/auth`;
-  private username = "";
-  IsEmailExist: boolean;
+  private username;
 
   constructor(private http: HttpClient) {}
 

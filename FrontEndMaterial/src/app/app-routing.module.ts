@@ -3,7 +3,6 @@ import { RouterModule } from "@angular/router";
 
 import { LayoutsModule } from "./layouts";
 import { CommonLayoutComponent } from "./layouts/common-layout";
-import { ChartsComponent } from "./pages/charts";
 import { DashboardComponent } from "./pages/dashboard";
 import { Dashboard2Component } from "./pages/dashboard2";
 import { FormsComponent } from "./pages/forms";
@@ -28,7 +27,6 @@ import { FormsComponent } from "./pages/forms";
               pathMatch: "full",
             },
             { path: "forms", component: FormsComponent, pathMatch: "full" },
-            { path: "charts", component: ChartsComponent, pathMatch: "full" },
             { path: "**", redirectTo: "/pages/404" },
           ],
         }, // add 'canActivate: AuthGuard' for catching unauth users

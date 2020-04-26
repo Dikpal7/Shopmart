@@ -4,7 +4,6 @@ import { RouterModule } from "@angular/router";
 import { LayoutsModule } from "./layouts";
 import { CommonLayoutComponent } from "./layouts/common-layout";
 import { DashboardComponent } from "./pages/dashboard";
-import { Dashboard2Component } from "./pages/dashboard2";
 
 @NgModule({
   imports: [
@@ -18,11 +17,6 @@ import { Dashboard2Component } from "./pages/dashboard2";
             {
               path: "dashboard",
               component: DashboardComponent,
-              pathMatch: "full",
-            },
-            {
-              path: "dashboard-custom",
-              component: Dashboard2Component,
               pathMatch: "full",
             },
             { path: "**", redirectTo: "/pages/404" },

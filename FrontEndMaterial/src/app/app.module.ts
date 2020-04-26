@@ -7,17 +7,10 @@ import { AuthInterceptor, AuthService } from "@services/*";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DashboardModule } from "./pages/dashboard";
-import { Dashboard2Module } from "./pages/dashboard2";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    DashboardModule,
-    Dashboard2Module,
-    HttpClientModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, DashboardModule, HttpClientModule],
   providers: [
     AuthService,
     {

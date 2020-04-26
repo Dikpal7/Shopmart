@@ -8,7 +8,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DashboardModule } from "./pages/dashboard";
 import { Dashboard2Module } from "./pages/dashboard2";
-import { FormsModule } from "./pages/forms";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +16,6 @@ import { FormsModule } from "./pages/forms";
     AppRoutingModule,
     DashboardModule,
     Dashboard2Module,
-    FormsModule,
     HttpClientModule,
   ],
   providers: [

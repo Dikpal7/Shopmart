@@ -5,7 +5,6 @@ import { LayoutsModule } from "./layouts";
 import { CommonLayoutComponent } from "./layouts/common-layout";
 import { DashboardComponent } from "./pages/dashboard";
 import { Dashboard2Component } from "./pages/dashboard2";
-import { FormsComponent } from "./pages/forms";
 
 @NgModule({
   imports: [
@@ -26,11 +25,9 @@ import { FormsComponent } from "./pages/forms";
               component: Dashboard2Component,
               pathMatch: "full",
             },
-            { path: "forms", component: FormsComponent, pathMatch: "full" },
             { path: "**", redirectTo: "/pages/404" },
           ],
         }, // add 'canActivate: AuthGuard' for catching unauth users
-        { path: "maps", loadChildren: "./pages/maps/maps.module#MapsModule" },
         {
           path: "pages",
           loadChildren: "./pages/pages/pages.module#PagesModule",

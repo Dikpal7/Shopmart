@@ -6,7 +6,6 @@ import { MaterialAngularSelectModule } from "material-angular-select";
 import { ThemeModule } from "theme";
 
 import { DashboardModule } from "../dashboard/dashboard.module";
-import { MapsModule } from "../maps/maps.module";
 import { Dashboard2Component } from "./dashboard2.component";
 
 @NgModule({
@@ -15,7 +14,6 @@ import { Dashboard2Component } from "./dashboard2.component";
     ThemeModule,
     FormsModule,
     DashboardModule,
-    MapsModule,
     MaterialAngularSelectModule,
   ],
   declarations: [Dashboard2Component],

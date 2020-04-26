@@ -7,7 +7,6 @@ import { AuthInterceptor, AuthService } from "@services/*";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ChartsModule } from "./pages/charts";
-import { ComponentsModule } from "./pages/components";
 import { DashboardModule } from "./pages/dashboard";
 import { Dashboard2Module } from "./pages/dashboard2";
 import { FormsModule } from "./pages/forms";
@@ -17,7 +16,6 @@ import { FormsModule } from "./pages/forms";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule,
     DashboardModule,
     Dashboard2Module,
     FormsModule,

@@ -30,7 +30,6 @@ import { FormsComponent } from "./pages/forms";
             { path: "**", redirectTo: "/pages/404" },
           ],
         }, // add 'canActivate: AuthGuard' for catching unauth users
-        { path: "ui", loadChildren: "./pages/ui/ui.module#UIModule" },
         { path: "maps", loadChildren: "./pages/maps/maps.module#MapsModule" },
         {
           path: "pages",

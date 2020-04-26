@@ -8,7 +8,6 @@ import { ThemeModule } from "theme";
 import { DashboardModule } from "../dashboard/dashboard.module";
 import { MapsModule } from "../maps/maps.module";
 import { Dashboard2Component } from "./dashboard2.component";
-import { FiltersComponent } from "./filters/filters.component";
 
 @NgModule({
   imports: [
@@ -19,6 +18,6 @@ import { FiltersComponent } from "./filters/filters.component";
     MapsModule,
     MaterialAngularSelectModule,
   ],
-  declarations: [Dashboard2Component, FiltersComponent],
+  declarations: [Dashboard2Component],
 })
 export class Dashboard2Module {}

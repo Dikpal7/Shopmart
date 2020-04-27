@@ -45,10 +45,10 @@ export class LoginComponent extends BlankLayoutCardComponent implements OnInit {
   }
 
   public ngOnInit() {
-    // this.authService.logout();
-    // this.loginForm.valueChanges.subscribe(() => {
-    //   this.error = null;
-    // });
+    //this.authService.logout();
+    this.loginForm.valueChanges.subscribe(() => {
+      this.error = null;
+    });
   }
 
   public login() {

@@ -9,24 +9,20 @@ import { AuthService } from "@services/*";
 })
 export class CommonLayoutComponent implements OnInit {
   public user;
+  public isLoggedIn: boolean;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   public ngOnInit() {
-    this.authService.userData.subscribe(
-      (user) =>
-        (this.user = user
-          ? user
-          : {
-              username: "Luke",
-              email: "Luke@skywalker.com",
-            })
-    );
+    this.isLoggedIn = this.authService.isLoggedIn;
+    this.authService.userData.subscribe((user) => (this.user = user));
   }
 
   public logout() {
-    this.authService
-      .logout()
-      .subscribe((res) => this.router.navigate(["/pages/login"]));
+    if (this.authService.logout()) window.location.reload();
+  }
+
+  public login() {
+    this.router.navigate(["/pages/login"]);
   }
 }

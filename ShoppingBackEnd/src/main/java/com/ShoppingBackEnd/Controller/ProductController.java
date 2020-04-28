@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ShoppingBackEnd.Model.CategoryItems;
+import com.ShoppingBackEnd.Model.MainCategory;
+import com.ShoppingBackEnd.Model.SubCategory;
 import com.ShoppingBackEnd.Service.ProductService;
 
 @RestController
@@ -17,9 +18,14 @@ public class ProductController {
 	@Autowired
 	ProductService _productService;
 
-	@GetMapping("/getCategory")
-	public List<CategoryItems> getCategoryitems() {
-		return _productService.getCategoryitems();
+	@GetMapping("/mainCategory")
+	public List<MainCategory> getMainCategory() {
+		return _productService.getMainCategory();
+	}
+
+	@GetMapping("/subCategory")
+	public List<SubCategory> getSubCategory() {
+		return _productService.getSubCategory();
 	}
 
 }

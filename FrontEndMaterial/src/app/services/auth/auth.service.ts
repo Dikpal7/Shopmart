@@ -39,14 +39,10 @@ export class AuthService {
   }
 
   public logout() {
-    return this.http.get(`${this.url}/logout`).pipe(
-      map((data) => {
-        localStorage.clear();
-        this.username = null;
-        this.isLogged$.next(false);
-        return of(false);
-      })
-    );
+    localStorage.clear();
+    this.username = null;
+    this.isLogged$.next(false);
+    return true;
   }
 
   public signup(data): Observable<any> {
@@ -96,14 +92,12 @@ export class AuthService {
   }
 
   private loadUser(): Observable<any> {
-    // use request to load user data with token
-    // it's fake and useing only for example
-    // if (localStorage.getItem("username") && localStorage.getItem("email")) {
-    //   this.username = {
-    //     username: localStorage.getItem("username"),
-    //     email: localStorage.getItem("email"),
-    //   };
-    // }
+    //use request to load user data with token
+    if (localStorage.getItem("username") && localStorage.getItem("token")) {
+      this.username = {
+        username: localStorage.getItem("username"),
+      };
+    } else this.username = null;
     return of(this.username);
   }
 }

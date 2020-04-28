@@ -1,22 +1,23 @@
 package com.ShoppingBackEnd.payload;
 
 public class JwtAuthenticationResponse {
-    private String accessToken;
-    //private String tokenType = "Bearer";
+	private String accessToken;
+	// private String tokenType = "Bearer";
 	private String username;
 
-    public JwtAuthenticationResponse(String accessToken, String username) {
-        this.accessToken = accessToken;
-        this.setUsername(username);
-    }
+	public JwtAuthenticationResponse(String accessToken, String username) {
+		this.accessToken = accessToken;
+		this.setUsername(username);
 
-    public String getAccessToken() {
-        return accessToken;
-    }
+	}
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
 
 	public String getUsername() {
 		return username;

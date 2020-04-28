@@ -3,9 +3,9 @@ package com.ShoppingBackEnd.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ShoppingBackEnd.Model.CategoryItems;
+import com.ShoppingBackEnd.Model.MainCategory;
 
 @Repository
-public interface ProductRepository extends JpaRepository<CategoryItems, Long> {
+public interface MainCatRepo extends JpaRepository<MainCategory, Long> {
 
 }

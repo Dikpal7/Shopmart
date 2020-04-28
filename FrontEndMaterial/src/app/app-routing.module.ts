@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { LayoutsModule } from "./layouts";
 import { CommonLayoutComponent } from "./layouts/common-layout";
 import { DashboardComponent } from "./pages/dashboard";
+import { ProductResolverService } from "./services";
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { DashboardComponent } from "./pages/dashboard";
               path: "dashboard",
               component: DashboardComponent,
               pathMatch: "full",
+              resolve: { data: ProductResolverService },
             },
             { path: "**", redirectTo: "/pages/404" },
           ],

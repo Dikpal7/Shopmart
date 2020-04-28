@@ -14,7 +14,7 @@ import { BlankLayoutCardComponent } from "app/layouts/blank-layout-card";
 @Component({
   selector: "app-sign-up",
   styleUrls: [
-    "../../../components/blank-layout-card/blank-layout-card.component.scss",
+    "../../../layouts/blank-layout-card/blank-layout-card.component.scss",
   ],
   templateUrl: "./sign-up.component.html",
 })

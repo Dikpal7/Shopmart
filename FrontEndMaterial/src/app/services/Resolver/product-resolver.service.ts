@@ -5,6 +5,7 @@ import {
   RouterStateSnapshot,
 } from "@angular/router";
 import { Observable } from "rxjs";
+import { ProductService } from "../dataService";
 
 @Injectable({
   providedIn: "root",
@@ -14,8 +15,7 @@ export class ProductResolverService implements Resolve<Observable<any>> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    return;
+    return this.service.getMainCategory();
   }
-
-  constructor() {}
+  constructor(private service: ProductService) {}
 }

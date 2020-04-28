@@ -2,7 +2,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
-import { AuthInterceptor, AuthService } from "@services/*";
+import {
+  AuthInterceptor,
+  AuthService,
+  ProductResolverService,
+} from "@services/*";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -18,6 +22,7 @@ import { DashboardModule } from "./pages/dashboard";
       useClass: AuthInterceptor,
       multi: true,
     },
+    ProductResolverService,
   ],
   bootstrap: [AppComponent],
 })

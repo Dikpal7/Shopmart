@@ -7,7 +7,7 @@ import { Subject } from "rxjs";
   selector: "app-reset-password",
   templateUrl: "./reset-password.component.html",
   styleUrls: [
-    "../../../components/blank-layout-card/blank-layout-card.component.scss",
+    "../../../layouts/blank-layout-card/blank-layout-card.component.scss",
   ],
 })
 export class ResetPasswordComponent implements OnInit {

@@ -1,5 +1,5 @@
 import { Component, HostBinding } from "@angular/core";
-import { BlankLayoutCardComponent } from "app/components/blank-layout-card";
+import { BlankLayoutCardComponent } from "app/layouts/blank-layout-card";
 import { AuthService } from "app/services";
 
 @Component({

@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 
 import { AuthService } from "@services/*";
 
-import { BlankLayoutCardComponent } from "app/components/blank-layout-card";
+import { BlankLayoutCardComponent } from "app/layouts/blank-layout-card";
 
 @Component({
   selector: "app-sign-up",

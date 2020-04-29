@@ -113,41 +113,38 @@
       <!-- Collapsible content -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent2">
         <!-- Links -->
-        <ul class="navbar-nav mr-auto" *ngFor="let item of productCategory">
+        <ul
+          class="navbar-nav mr-auto"
+          *ngFor="let item of productCategory.data"
+        >
           <!-- Features -->
-          <li class="nav-item dropdown mega-dropdown active">
+          <li class="nav-item dropdown mega-dropdown active" mdbDropdown>
             <a
-              class="nav-link dropdown-toggle text-uppercase"
-              id="navbarDropdownMenuLink2"
+              mdbDropdownToggle
+              class="nav-link dropdown-toggle text-uppercase no-caret"
+              aria-haspopup="true"
+              id="navbarDropdownMenuLink"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
               >{{ item.mainCategory }}
               <span class="sr-only">(current)</span>
             </a>
+            <div
+              class="dropdown-menu mega-menu v-2 row z-depth-1 special-color"
+              *ngFor="let subCat of item.subCategoryList"
+            >
+              <div class="row mx-md-12">
+                <div class="col-md-12">
+                  <li class="">
+                    <a class="menu-item" href="">
+                      <h6>{{ subCat.subCategories }}</h6>
+                    </a>
+                  </li>
+                </div>
+              </div>
+            </div>
           </li>
-          <!-- Technology -->
-          <!-- <li class="nav-item dropdown mega-dropdown">
-            <a
-              class="nav-link dropdown-toggle text-uppercase"
-              id="navbarDropdownMenuLink3"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >Technology</a
-            >
-          </li> -->
-          <!-- Lifestyle -->
-          <!-- <li class="nav-item dropdown mega-dropdown">
-            <a
-              class="nav-link dropdown-toggle text-uppercase"
-              id="navbarDropdownMenuLink4"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >Lifestyle</a
-            >
-          </li> -->
         </ul>
         <!-- Links -->
       </div>

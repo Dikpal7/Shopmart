@@ -23,6 +23,7 @@ export class CommonLayoutComponent implements OnInit {
     this.isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     this.authService.userData.subscribe((user) => (this.user = user));
     this.productCategory = this.route.snapshot.data.data;
+    console.log(this.productCategory);
   }
 
   public logout() {

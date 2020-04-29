@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ShoppingBackEnd.Model.CategoryItems;
 import com.ShoppingBackEnd.Model.MainCategory;
 import com.ShoppingBackEnd.Model.SubCategory;
 import com.ShoppingBackEnd.Service.ProductService;
@@ -28,4 +29,8 @@ public class ProductController {
 		return _productService.getSubCategory();
 	}
 
+	@GetMapping("/catItems")
+	public List<CategoryItems> getCategoryItems() {
+		return _productService.getCategoryItems();
+	}
 }

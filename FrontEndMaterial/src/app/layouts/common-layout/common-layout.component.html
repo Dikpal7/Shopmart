@@ -92,10 +92,7 @@
         <li class="mdl-menu__item">
           Settings
         </li>
-        <a
-          class="mdl-menu__item"
-          href="https://github.com/CreativeIT/material-angular-dashboard/issues"
-        >
+        <a class="mdl-menu__item" href="https://github.com/Dikpal7/Shopmart">
           Support
         </a>
         <li class="mdl-menu__item">
@@ -134,13 +131,15 @@
               class="dropdown-menu mega-menu v-2 row z-depth-1 special-color"
               *ngFor="let subCat of item.subCategoryList"
             >
-              <div class="row mx-md-12">
-                <div class="col-md-12">
-                  <li class="">
-                    <a class="menu-item" href="">
-                      <h6>{{ subCat.subCategories }}</h6>
-                    </a>
-                  </li>
+              <div class="row mx-md-4 mx-1">
+                <div class="col-md-6 col-xl-3 sub-menu my-xl-5 mt-5 mb-4">
+                  <ul class="list-unstyled">
+                    <li class="">
+                      <a class="menu-item" href="">
+                        <h6>{{ subCat.subCategories }}</h6>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

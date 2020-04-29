@@ -5,16 +5,19 @@
     <base-page-top>
       <div class="mdl-layout-spacer"></div>
       <!-- Search form -->
-      <form class="form-inline">
-        <div class="md-form">
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Search"
-            aria-label="Search"
-          />
-        </div>
-      </form>
+      <div class="col-md-6">
+        <form class="navbar-form" role="search">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              name="search"
+              id="search"
+            />
+          </div>
+        </form>
+      </div>
       <div class="mdl-layout-spacer"></div>
       <div *ngIf="!isLoggedIn">
         <button type="button" class="btn btn-secondary" (click)="login()">

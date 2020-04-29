@@ -20,9 +20,9 @@ export class CommonLayoutComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.productCategory = this.route.snapshot.data.data;
-    this.isLoggedIn = this.authService.isLoggedIn;
+    this.isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     this.authService.userData.subscribe((user) => (this.user = user));
+    this.productCategory = this.route.snapshot.data.data;
   }
 
   public logout() {

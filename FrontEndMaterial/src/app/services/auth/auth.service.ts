@@ -32,6 +32,7 @@ export class AuthService {
           this.username = res.username;
           localStorage.setItem(tokenName, res.accessToken);
           localStorage.setItem("username", res.username);
+          localStorage.setItem("isLoggedIn", "true");
           this.isLogged$.next(true);
           return this.username;
         })

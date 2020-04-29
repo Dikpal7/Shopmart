@@ -129,14 +129,16 @@
             </a>
             <div
               class="dropdown-menu mega-menu v-2 row z-depth-1 special-color"
-              *ngFor="let subCat of item.subCategoryList"
             >
-              <div class="row mx-md-4 mx-1">
+              <div
+                class="row mx-md-12 mx-1"
+                *ngFor="let subCat of item.subCategoryList"
+              >
                 <div class="col-md-6 col-xl-3 sub-menu my-xl-5 mt-5 mb-4">
                   <ul class="list-unstyled">
                     <li class="">
                       <a class="menu-item" href="">
-                        <h6>{{ subCat.subCategories }}</h6>
+                        {{ subCat.subCategories }}
                       </a>
                     </li>
                   </ul>

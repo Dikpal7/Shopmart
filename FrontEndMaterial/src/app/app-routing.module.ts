@@ -14,12 +14,12 @@ import { ProductResolverService } from "./services";
         {
           path: "app",
           component: CommonLayoutComponent,
+          resolve: { data: ProductResolverService },
           children: [
             {
               path: "dashboard",
               component: DashboardComponent,
               pathMatch: "full",
-              resolve: { data: ProductResolverService },
             },
             { path: "**", redirectTo: "/pages/404" },
           ],

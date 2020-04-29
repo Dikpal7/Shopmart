@@ -17,7 +17,7 @@
       </form>
       <div class="mdl-layout-spacer"></div>
       <div *ngIf="!isLoggedIn">
-        <button type="button" class="btn btn-secondary" (click) ="login()">
+        <button type="button" class="btn btn-secondary" (click)="login()">
           Login
         </button>
       </div>
@@ -110,7 +110,7 @@
       <!-- Collapsible content -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent2">
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" *ngFor="let item of productCategory">
           <!-- Features -->
           <li class="nav-item dropdown mega-dropdown active">
             <a
@@ -119,12 +119,12 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-              >Features
+              >{{ item.mainCategory }}
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <!-- Technology -->
-          <li class="nav-item dropdown mega-dropdown">
+          <!-- <li class="nav-item dropdown mega-dropdown">
             <a
               class="nav-link dropdown-toggle text-uppercase"
               id="navbarDropdownMenuLink3"
@@ -133,9 +133,9 @@
               aria-expanded="false"
               >Technology</a
             >
-          </li>
+          </li> -->
           <!-- Lifestyle -->
-          <li class="nav-item dropdown mega-dropdown">
+          <!-- <li class="nav-item dropdown mega-dropdown">
             <a
               class="nav-link dropdown-toggle text-uppercase"
               id="navbarDropdownMenuLink4"
@@ -144,7 +144,7 @@
               aria-expanded="false"
               >Lifestyle</a
             >
-          </li>
+          </li> -->
         </ul>
         <!-- Links -->
       </div>

@@ -13,10 +13,6 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getMainCategory(): Observable<any> {
-    return this.http.get(`${this.url}/mainCategory`).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this.http.get(`${this.url}/mainCategory`);
   }
 }

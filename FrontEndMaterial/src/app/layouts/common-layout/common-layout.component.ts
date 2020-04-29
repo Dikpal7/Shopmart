@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { AuthService } from "@services/*";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-common-layout",
@@ -10,10 +11,16 @@ import { AuthService } from "@services/*";
 export class CommonLayoutComponent implements OnInit {
   public user;
   public isLoggedIn: boolean;
+  productCategory: any[];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   public ngOnInit() {
+    this.productCategory = this.route.snapshot.data.data;
     this.isLoggedIn = this.authService.isLoggedIn;
     this.authService.userData.subscribe((user) => (this.user = user));
   }

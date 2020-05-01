@@ -9,11 +9,12 @@
         <form class="navbar-form" role="search">
           <div class="input-group">
             <input
-              type="text"
+              matInput
               class="form-control"
-              placeholder="Search"
-              name="search"
-              id="search"
+              type="text"
+              formControlName="searchword"
+              placeholder="Search for products, brands and more"
+              (input)="searchKeyword()"
             />
           </div>
         </form>
@@ -104,55 +105,38 @@
   <div class="mdl-layout__drawer">
     <app-sidebar></app-sidebar>
   </div>
-  <div>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark special-color-dark">
-      <!-- Collapsible content -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-        <!-- Links -->
-        <ul
-          class="navbar-nav mr-auto"
-          *ngFor="let item of productCategory.data"
-        >
-          <!-- Features -->
-          <li class="nav-item dropdown mega-dropdown active" mdbDropdown>
-            <a
-              mdbDropdownToggle
-              class="nav-link dropdown-toggle text-uppercase no-caret"
-              aria-haspopup="true"
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >{{ item.mainCategory }}
-              <span class="sr-only">(current)</span>
-            </a>
-            <div
-              class="dropdown-menu mega-menu v-2 row z-depth-1 special-color"
-            >
-              <div
-                class="row mx-md-12 mx-1"
-                *ngFor="let subCat of item.subCategoryList"
-              >
-                <div class="col-md-6 col-xl-3 sub-menu my-xl-5 mt-5 mb-4">
-                  <ul class="list-unstyled">
-                    <li class="">
-                      <a class="menu-item" href="">
-                        {{ subCat.subCategories }}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <!-- Links -->
+
+  <!-- Navbar MegaMenu -->
+  <div class="navbar">
+    <div class="dropdown" *ngFor="let item of productCategory.data">
+      <button class="dropbtn dropdown-toggle">{{ item.mainCategory }}</button>
+      <div class="dropdown-content">
+        <div class="row" *ngFor="let subCat of item.subCategoryList">
+          <div class="column">
+            <ul class="list-unstyled">
+              <li class="">
+                <a class="menu-item" href="">
+                  <b>{{ subCat.subCategories }}</b>
+                </a>
+                <ul
+                  class="list-unstyled"
+                  *ngFor="let cat of subCat.categoryItems"
+                >
+                  <li class="">
+                    <a class="menu-item" href="">
+                      {{ cat.categoryItem }}
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <!-- Collapsible content -->
-    </nav>
-    <!-- Navbar -->
+    </div>
   </div>
+  <!-- Navbar MegaMenu -->
+
   <main class="mdl-layout__content">
     <router-outlet></router-outlet>
   </main>

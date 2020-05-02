@@ -25,7 +25,7 @@ import { ResetPasswordComponent } from "./reset-password";
             pathMatch: "full",
           },
           {
-            path: "ResetPassword",
+            path: "reset-password",
             component: ResetPasswordComponent,
             pathMatch: "full",
           },

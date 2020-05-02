@@ -11,7 +11,6 @@ import { Subject } from "rxjs";
   ],
 })
 export class ResetPasswordComponent implements OnInit {
-  ngUnsubscribe: Subject<any> = new Subject<any>();
   private newPassword;
   private confirmPassword;
   confirmationToken: string;
@@ -23,20 +22,7 @@ export class ResetPasswordComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit() {
-    this.activatedRoute.queryParamMap.subscribe((queryParams) => {
-      this.confirmationToken = queryParams.get("token");
-    });
-
-    // this.authService
-    //   .verifyPasswordToken(this.confirmationToken)
-    //   .subscribe((res) => {
-    //     if (!res) {
-    //       alert("link is not valid");
-    //       this.router.navigate(["/pages/login"]);
-    //     }
-    //   });
-  }
+  ngOnInit() {}
 
   resetPassword() {
     this.error = null;
@@ -61,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
         if (res) {
           alert("Password reset successfully!");
           this.router.navigate(["/pages/login"]);
-        } else alert("Link is not valid!");
+        } else alert("link is not valid to resest password!");
       });
     }
   }

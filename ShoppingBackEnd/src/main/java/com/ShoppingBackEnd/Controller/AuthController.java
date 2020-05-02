@@ -1,17 +1,19 @@
 package com.ShoppingBackEnd.Controller;
 
-import com.ShoppingBackEnd.payload.LoginRequest;
-import com.ShoppingBackEnd.payload.ResetPassword;
-import com.ShoppingBackEnd.payload.SignUpRequest;
-import com.ShoppingBackEnd.Service.EmailSenderService;
-import com.ShoppingBackEnd.Service.AuthService;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import javax.validation.Valid;
+
+import com.ShoppingBackEnd.Service.AuthService;
+import com.ShoppingBackEnd.Service.EmailSenderService;
+import com.ShoppingBackEnd.payload.LoginRequest;
+import com.ShoppingBackEnd.payload.ResetPassword;
+import com.ShoppingBackEnd.payload.SignUpRequest;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -45,7 +47,7 @@ public class AuthController {
 
 	@PostMapping("/verifyToken")
 	public Boolean verifyToken(@Valid @RequestBody String token) {
-		return _emailService.verifyToken(token) ;
+		return _emailService.verifyToken(token);
 	}
 
 }

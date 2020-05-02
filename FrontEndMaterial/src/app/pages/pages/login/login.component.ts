@@ -8,12 +8,12 @@ import {
 import { Router } from "@angular/router";
 
 import { AuthService } from "@services/";
-import { BlankLayoutCardComponent } from "app/components/blank-layout-card";
+import { BlankLayoutCardComponent } from "app/layouts/blank-layout-card";
 
 @Component({
   selector: "app-login",
   styleUrls: [
-    "../../../components/blank-layout-card/blank-layout-card.component.scss",
+    "../../../layouts/blank-layout-card/blank-layout-card.component.scss",
   ],
   templateUrl: "./login.component.html",
 })
@@ -45,10 +45,10 @@ export class LoginComponent extends BlankLayoutCardComponent implements OnInit {
   }
 
   public ngOnInit() {
-    // this.authService.logout();
-    // this.loginForm.valueChanges.subscribe(() => {
-    //   this.error = null;
-    // });
+    this.authService.logout();
+    this.loginForm.valueChanges.subscribe(() => {
+      this.error = null;
+    });
   }
 
   public login() {

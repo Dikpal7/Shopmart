@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: 'base-sidebar',
-  styleUrls: ['./sidebar.component.scss'],
-  templateUrl: './sidebar.component.html',
+  selector: "base-sidebar",
+  styleUrls: ["./sidebar.component.scss"],
+  templateUrl: "./sidebar.component.html",
 })
 export class SidebarComponent {
   @Input() public menu;
-  @Input() public title = 'darkboard';
+  @Input() public title = "Shopmart";
 }

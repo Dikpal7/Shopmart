@@ -1,4 +1,4 @@
-@import '~theme/helpers';
+@import "~theme/helpers";
 
 html {
   color: $text-color-primary;
@@ -11,7 +11,8 @@ html {
 }
 
 main {
-  background: url("#{$image-path}/Dark_background_1920x1080.png") center top no-repeat;
+  background: url("#{$image-path}/Dark_background_1920x1080.png") center top
+    no-repeat;
   background-size: cover;
 }
 

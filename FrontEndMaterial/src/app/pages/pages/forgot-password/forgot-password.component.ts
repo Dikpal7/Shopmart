@@ -1,11 +1,11 @@
 import { Component, HostBinding } from "@angular/core";
-import { BlankLayoutCardComponent } from "app/components/blank-layout-card";
+import { BlankLayoutCardComponent } from "app/layouts/blank-layout-card";
 import { AuthService } from "app/services";
 
 @Component({
   selector: "app-forgot-password",
   styleUrls: [
-    "../../../components/blank-layout-card/blank-layout-card.component.scss",
+    "../../../layouts/blank-layout-card/blank-layout-card.component.scss",
   ],
   templateUrl: "./forgot-password.component.html",
 })

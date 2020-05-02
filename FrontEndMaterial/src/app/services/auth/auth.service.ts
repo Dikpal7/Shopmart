@@ -13,8 +13,7 @@ const tokenName = "token";
 export class AuthService {
   private isLogged$ = new BehaviorSubject(false);
   private url = `${environment.apiBaseUrl}/api/auth`;
-  private username = "";
-  IsEmailExist: boolean;
+  private username;
 
   constructor(private http: HttpClient) {}
 
@@ -33,6 +32,7 @@ export class AuthService {
           this.username = res.username;
           localStorage.setItem(tokenName, res.accessToken);
           localStorage.setItem("username", res.username);
+          localStorage.setItem("isLoggedIn", "true");
           this.isLogged$.next(true);
           return this.username;
         })
@@ -40,14 +40,10 @@ export class AuthService {
   }
 
   public logout() {
-    return this.http.get(`${this.url}/logout`).pipe(
-      map((data) => {
-        localStorage.clear();
-        this.username = null;
-        this.isLogged$.next(false);
-        return of(false);
-      })
-    );
+    localStorage.clear();
+    this.username = null;
+    this.isLogged$.next(false);
+    return true;
   }
 
   public signup(data): Observable<any> {
@@ -90,21 +86,19 @@ export class AuthService {
 
   public verifyPasswordToken(token): Observable<boolean> {
     return this.http.post(`${this.url}/verifyToken`, token).pipe(
-      map((res: { notExist: boolean }) => {
-        return res.notExist;
+      map((res: { isExists: boolean }) => {
+        return res.isExists;
       })
     );
   }
 
   private loadUser(): Observable<any> {
-    // use request to load user data with token
-    // it's fake and useing only for example
-    // if (localStorage.getItem("username") && localStorage.getItem("email")) {
-    //   this.username = {
-    //     username: localStorage.getItem("username"),
-    //     email: localStorage.getItem("email"),
-    //   };
-    // }
+    //use request to load user data with token
+    if (localStorage.getItem("username") && localStorage.getItem("token")) {
+      this.username = {
+        username: localStorage.getItem("username"),
+      };
+    } else this.username = null;
     return of(this.username);
   }
 }

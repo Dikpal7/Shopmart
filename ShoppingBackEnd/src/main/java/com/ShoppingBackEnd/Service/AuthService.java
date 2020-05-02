@@ -91,13 +91,14 @@ public class AuthService {
 	}
 
 	public Boolean resetPassword(ResetPassword resetPwdData) {
+
 		try {
 			ConfirmationToken tokenEntity = tokenRepo.findByConfirmationToken(resetPwdData.getConfirmationToken());
 			User user = tokenEntity.getUser();
 			user.setPassword(passwordEncoder.encode(resetPwdData.getNewPassword()));
 			userRepo.save(user);
 			tokenRepo.delete(tokenEntity);
-			
+
 			return true;
 		} catch (Exception e) {
 			return false;

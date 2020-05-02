@@ -1,29 +1,20 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { AuthInterceptor, AuthService, FakeBackendInterceptor } from '@services/*';
+import {
+  AuthInterceptor,
+  AuthService,
+  ProductResolverService,
+} from "@services/*";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ChartsModule } from './pages/charts';
-import { ComponentsModule } from './pages/components';
-import { DashboardModule } from './pages/dashboard';
-import { Dashboard2Module } from './pages/dashboard2';
-import { FormsModule } from './pages/forms';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { DashboardModule } from "./pages/dashboard";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ComponentsModule,
-    DashboardModule,
-    Dashboard2Module,
-    FormsModule,
-    ChartsModule,
-    HttpClientModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, DashboardModule, HttpClientModule],
   providers: [
     AuthService,
     {
@@ -31,11 +22,7 @@ import { FormsModule } from './pages/forms';
       useClass: AuthInterceptor,
       multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: FakeBackendInterceptor,
-      multi: true,
-    },
+    ProductResolverService,
   ],
   bootstrap: [AppComponent],
 })

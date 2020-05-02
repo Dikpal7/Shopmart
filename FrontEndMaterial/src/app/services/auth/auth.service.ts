@@ -86,8 +86,8 @@ export class AuthService {
 
   public verifyPasswordToken(token): Observable<boolean> {
     return this.http.post(`${this.url}/verifyToken`, token).pipe(
-      map((res: { notExist: boolean }) => {
-        return res.notExist;
+      map((res: { isExists: boolean }) => {
+        return res.isExists;
       })
     );
   }

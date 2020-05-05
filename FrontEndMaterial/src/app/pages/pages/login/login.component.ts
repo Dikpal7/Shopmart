@@ -45,7 +45,6 @@ export class LoginComponent extends BlankLayoutCardComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.authService.logout();
     this.loginForm.valueChanges.subscribe(() => {
       this.error = null;
     });
@@ -54,6 +53,7 @@ export class LoginComponent extends BlankLayoutCardComponent implements OnInit {
   public login() {
     this.error = null;
     if (this.loginForm.valid) {
+      this.enableSpinner = true;
       this.authService.login(this.loginForm.getRawValue()).subscribe(
         (res) => {
           this.router.navigate(["/app/dashboard"]);

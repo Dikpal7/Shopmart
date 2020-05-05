@@ -8,6 +8,7 @@ import { ForgotPasswordComponent } from "./forgot-password";
 import { LoginComponent } from "./login";
 import { SignUpComponent } from "./sign-up";
 import { ResetPasswordComponent } from "./reset-password";
+import { AuthGuard } from "app/services/auth/auth.guard";
 
 @NgModule({
   imports: [
@@ -17,7 +18,12 @@ import { ResetPasswordComponent } from "./reset-password";
         component: BlankLayoutComponent,
         children: [
           { path: "404", component: ErrorComponent, pathMatch: "full" },
-          { path: "login", component: LoginComponent, pathMatch: "full" },
+          {
+            path: "login",
+            component: LoginComponent,
+            canActivate: [AuthGuard],
+            pathMatch: "full",
+          },
           { path: "sign-up", component: SignUpComponent, pathMatch: "full" },
           {
             path: "forgot-password",

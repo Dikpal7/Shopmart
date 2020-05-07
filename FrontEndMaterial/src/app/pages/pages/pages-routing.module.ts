@@ -9,6 +9,7 @@ import { LoginComponent } from "./login";
 import { SignUpComponent } from "./sign-up";
 import { ResetPasswordComponent } from "./reset-password";
 import { AuthGuard } from "app/services/auth/auth.guard";
+import { AdminComponent } from "./admin/admin.component";
 
 @NgModule({
   imports: [
@@ -33,6 +34,11 @@ import { AuthGuard } from "app/services/auth/auth.guard";
           {
             path: "reset-password",
             component: ResetPasswordComponent,
+            pathMatch: "full",
+          },
+          {
+            path: "admin",
+            component: AdminComponent,
             pathMatch: "full",
           },
           { path: "**", redirectTo: "404" },

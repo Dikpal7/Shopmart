@@ -53,7 +53,6 @@ export class LoginComponent extends BlankLayoutCardComponent implements OnInit {
   public login() {
     this.error = null;
     if (this.loginForm.valid) {
-      this.enableSpinner = true;
       this.authService.login(this.loginForm.getRawValue()).subscribe(
         (res) => {
           this.router.navigate(["/app/dashboard"]);

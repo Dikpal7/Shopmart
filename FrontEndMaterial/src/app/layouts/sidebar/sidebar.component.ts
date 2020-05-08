@@ -15,5 +15,6 @@ export class SidebarComponent extends BaseSidebarComponent {
   public menu = [
     { name: "Sign in", link: "/pages/login", icon: "pages" },
     { name: "Sign up", link: "/pages/sign-up", icon: "pages" },
+    { name: "Admin", link: "/pages/admin", icon: "pages" },
   ];
 }

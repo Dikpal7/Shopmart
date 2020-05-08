@@ -8,10 +8,8 @@ import { BlankLayoutCardComponent } from "app/layouts/blank-layout-card";
     "../../../layouts/blank-layout-card/blank-layout-card.component.scss",
   ],
 })
-export class AdminComponent extends BlankLayoutCardComponent implements OnInit {
-  constructor() {
-    super();
-  }
+export class AdminComponent implements OnInit {
+  constructor() {}
 
   ngOnInit() {}
 }

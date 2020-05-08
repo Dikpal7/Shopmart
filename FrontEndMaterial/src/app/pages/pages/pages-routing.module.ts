@@ -10,6 +10,7 @@ import { SignUpComponent } from "./sign-up";
 import { ResetPasswordComponent } from "./reset-password";
 import { AuthGuard } from "app/services/auth/auth.guard";
 import { AdminComponent } from "./admin/admin.component";
+import { ProductResolverService } from "app/services";
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { AdminComponent } from "./admin/admin.component";
             path: "admin",
             component: AdminComponent,
             pathMatch: "full",
+            resolve: { data: ProductResolverService },
           },
           { path: "**", redirectTo: "404" },
         ],

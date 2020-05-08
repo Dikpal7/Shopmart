@@ -11,8 +11,7 @@ import { LoginComponent } from "./login";
 import { PagesRoutingModule } from "./pages-routing.module";
 import { SignUpComponent } from "./sign-up";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
-import { MaterialModule } from "./material.module";
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from "./admin/admin.component";
 
 @NgModule({
   imports: [
@@ -22,7 +21,6 @@ import { AdminComponent } from './admin/admin.component';
     FormsModule,
     ReactiveFormsModule,
     TooltipModule,
-    MaterialModule,
   ],
   declarations: [
     ErrorComponent,

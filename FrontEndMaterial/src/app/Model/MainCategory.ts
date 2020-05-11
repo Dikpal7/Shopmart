@@ -1,4 +1,7 @@
+import { SubCategory } from "./SubCategory";
+
 export class MainCategory {
-  public mainCategory: string;
-  public mainCatId: any;
+  id: any;
+  main_category: string;
+  sub_categories: SubCategory[];
 }

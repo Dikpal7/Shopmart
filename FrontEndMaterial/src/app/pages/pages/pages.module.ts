@@ -11,7 +11,6 @@ import { LoginComponent } from "./login";
 import { PagesRoutingModule } from "./pages-routing.module";
 import { SignUpComponent } from "./sign-up";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
-import { AdminComponent } from "./admin/admin.component";
 
 @NgModule({
   imports: [
@@ -28,7 +27,6 @@ import { AdminComponent } from "./admin/admin.component";
     SignUpComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    AdminComponent,
   ],
 })
 export class PagesModule {}

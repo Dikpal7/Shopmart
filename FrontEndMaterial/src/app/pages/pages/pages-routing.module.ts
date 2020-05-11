@@ -37,12 +37,6 @@ import { ProductResolverService } from "app/services";
             component: ResetPasswordComponent,
             pathMatch: "full",
           },
-          {
-            path: "admin",
-            component: AdminComponent,
-            pathMatch: "full",
-            resolve: { data: ProductResolverService },
-          },
           { path: "**", redirectTo: "404" },
         ],
       },

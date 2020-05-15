@@ -6,23 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ShoppingBackEnd.Model.Brand;
-import com.ShoppingBackEnd.Model.Section;
 import com.ShoppingBackEnd.Model.Category;
+import com.ShoppingBackEnd.Model.Section;
+import com.ShoppingBackEnd.Repository.BrandRepo;
 import com.ShoppingBackEnd.Repository.CategoryRepo;
-import com.ShoppingBackEnd.Repository.MainCatRepo;
-import com.ShoppingBackEnd.Repository.SubCatRepo;
+import com.ShoppingBackEnd.Repository.SectionRepo;
 
 @Service
 public class ProductService {
 
 	@Autowired
-	MainCatRepo _mainRepo;
+	SectionRepo _mainRepo;
 
 	@Autowired
-	SubCatRepo _subRepo;
+	CategoryRepo _subRepo;
 
 	@Autowired
-	CategoryRepo _catRepo;
+	BrandRepo _catRepo;
 
 	public List<Section> getMainCategory() {
 		return _mainRepo.findAll();

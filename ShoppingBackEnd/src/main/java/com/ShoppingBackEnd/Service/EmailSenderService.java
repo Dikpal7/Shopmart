@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ShoppingBackEnd.Model.ConfirmationToken;
 import com.ShoppingBackEnd.Model.User;
-import com.ShoppingBackEnd.Repository.ConfirmationTokenRepository;
+import com.ShoppingBackEnd.Repository.ConfirmationTokenRepo;
 import com.ShoppingBackEnd.Repository.UserRepository;
 import com.ShoppingBackEnd.payload.ApiResponse;
 
@@ -22,7 +22,7 @@ public class EmailSenderService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private ConfirmationTokenRepository confirmationTokenRepository;
+	private ConfirmationTokenRepo confirmationTokenRepository;
 
 	@Autowired
 	public EmailSenderService(JavaMailSender javaMailSender) {

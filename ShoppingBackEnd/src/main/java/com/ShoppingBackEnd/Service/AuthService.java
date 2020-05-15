@@ -18,7 +18,7 @@ import com.ShoppingBackEnd.Model.ConfirmationToken;
 import com.ShoppingBackEnd.Model.Role;
 import com.ShoppingBackEnd.Model.RoleName;
 import com.ShoppingBackEnd.Model.User;
-import com.ShoppingBackEnd.Repository.ConfirmationTokenRepository;
+import com.ShoppingBackEnd.Repository.ConfirmationTokenRepo;
 import com.ShoppingBackEnd.Repository.RoleRepository;
 import com.ShoppingBackEnd.Repository.UserRepository;
 import com.ShoppingBackEnd.Security.JwtTokenProvider;
@@ -39,7 +39,7 @@ public class AuthService {
 	UserRepository userRepo;
 
 	@Autowired
-	ConfirmationTokenRepository tokenRepo;
+	ConfirmationTokenRepo tokenRepo;
 
 	@Autowired
 	RoleRepository roleRepo;

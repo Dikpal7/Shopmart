@@ -16,23 +16,23 @@ import com.ShoppingBackEnd.Repository.SectionRepo;
 public class ProductService {
 
 	@Autowired
-	SectionRepo _mainRepo;
+	SectionRepo _sectionRepo;
 
 	@Autowired
-	CategoryRepo _subRepo;
+	CategoryRepo _catRepo;
 
 	@Autowired
-	BrandRepo _catRepo;
+	BrandRepo _brandRepo;
 
-	public List<Section> getMainCategory() {
-		return _mainRepo.findAll();
+	public List<Section> getSections() {
+		return _sectionRepo.findAll();
 	}
 
-	public List<Category> getSubCategory() {
-		return _subRepo.findAll();
-	}
-
-	public List<Brand> getCategoryItems() {
+	public List<Category> getCategories() {
 		return _catRepo.findAll();
+	}
+
+	public List<Brand> getBrands() {
+		return _brandRepo.findAll();
 	}
 }

@@ -24,10 +24,10 @@ public class ProductController {
 	ProductService _productService;
 
 	@GetMapping("/section")
-	public ResponseEntity<CommonResponse<List<Section>>> getMainCategory() {
+	public ResponseEntity<CommonResponse<List<Section>>> getSections() {
 		try {
 			return new ResponseEntity<CommonResponse<List<Section>>>(
-					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getMainCategory()),
+					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getSections()),
 					HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -37,10 +37,10 @@ public class ProductController {
 	}
 
 	@GetMapping("/category")
-	public ResponseEntity<CommonResponse<List<Category>>> getSubCategory() {
+	public ResponseEntity<CommonResponse<List<Category>>> getCategories() {
 		try {
 			return new ResponseEntity<CommonResponse<List<Category>>>(
-					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getSubCategory()),
+					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getCategories()),
 					HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -49,12 +49,11 @@ public class ProductController {
 		}
 	}
 
-	@GetMapping("/brands")
-	public ResponseEntity<CommonResponse<List<Brand>>> getCategoryItems() {
+	@GetMapping("/brand")
+	public ResponseEntity<CommonResponse<List<Brand>>> getBrands() {
 		try {
 			return new ResponseEntity<CommonResponse<List<Brand>>>(
-					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getCategoryItems()),
-					HttpStatus.OK);
+					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getBrands()), HttpStatus.OK);
 
 		} catch (Exception e) {
 			return new ResponseEntity<CommonResponse<List<Brand>>>(

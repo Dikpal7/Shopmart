@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -24,5 +26,17 @@ public class ProductAttribute {
 
 	@Column(name = "valueName", unique = true, nullable = false)
 	private String valueName;
+
+	@JsonIgnore
+	@Column(name = "prod_id")
+	private Long prod_id;
+
+	@JsonIgnore
+	@Column(name = "cat_id")
+	private Long cat_id;
+
+	@JsonIgnore
+	@Column(name = "brand_id")
+	private Long brand_id;
 
 }

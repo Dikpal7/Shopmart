@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -21,5 +23,9 @@ public class prodImages {
 
 	@Column(name = "imageUrl", unique = true, nullable = false)
 	private String imageUrl;
+
+	@JsonIgnore
+	@Column(name = "prod_id")
+	private Long prod_id;
 
 }

@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -44,5 +46,17 @@ public class Product {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "prod_id", referencedColumnName = "id")
 	private Set<prodImages> prodImagesList = new HashSet<>();
+
+	@JsonIgnore
+	@Column(name = "sec_id")
+	private Long sec_id;
+
+	@JsonIgnore
+	@Column(name = "cat_id")
+	private Long cat_id;
+
+	@JsonIgnore
+	@Column(name = "brand_id")
+	private Long brand_id;
 
 }

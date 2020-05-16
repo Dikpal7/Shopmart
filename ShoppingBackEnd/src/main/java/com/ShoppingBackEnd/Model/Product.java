@@ -13,7 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "Product")
 public class Product {
 
@@ -41,53 +44,5 @@ public class Product {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "prod_id", referencedColumnName = "id")
 	private Set<prodImages> prodImagesList = new HashSet<>();
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-
-	public String getAvailableQuantity() {
-		return availableQuantity;
-	}
-
-	public void setAvailableQuantity(String availableQuantity) {
-		this.availableQuantity = availableQuantity;
-	}
-
-	public String getProduct() {
-		return product;
-	}
-
-	public void setProduct(String product) {
-		this.product = product;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public Set<ProductAttribute> getProdAttributeList() {
-		return prodAttributeList;
-	}
-
-	public void setProdAttributeList(Set<ProductAttribute> prodAttributeList) {
-		this.prodAttributeList = prodAttributeList;
-	}
-
-	public Set<prodImages> getProdImagesList() {
-		return prodImagesList;
-	}
-
-	public void setProdImagesList(Set<prodImages> prodImagesList) {
-		this.prodImagesList = prodImagesList;
-	}
 
 }

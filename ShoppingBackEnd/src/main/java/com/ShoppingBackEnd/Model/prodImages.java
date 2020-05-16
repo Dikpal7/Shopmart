@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "ProdImage")
 public class prodImages {
 
@@ -18,13 +21,5 @@ public class prodImages {
 
 	@Column(name = "imageUrl", unique = true, nullable = false)
 	private String imageUrl;
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
 
 }

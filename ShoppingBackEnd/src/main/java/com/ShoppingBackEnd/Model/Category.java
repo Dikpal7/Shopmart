@@ -16,7 +16,10 @@ import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "Category", uniqueConstraints = { @UniqueConstraint(columnNames = { "category" }) })
 public class Category {
 
@@ -31,58 +34,18 @@ public class Category {
 	@JoinColumn(name = "cat_id", referencedColumnName = "id")
 	private Set<Brand> brandsList = new HashSet<>();
 
-	public Set<Brand> getBrandsList() {
-		return brandsList;
-	}
-
-	public void setBrandsList(Set<Brand> brandsList) {
-		this.brandsList = brandsList;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cat_id", referencedColumnName = "id")
 	private Set<MasterSpecification> masterSpecList = new HashSet<>();
-
-	public Set<MasterSpecification> getMasterSpecList() {
-		return masterSpecList;
-	}
-
-	public void setMasterSpecList(Set<MasterSpecification> masterSpecList) {
-		this.masterSpecList = masterSpecList;
-	}
 
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cat_id", referencedColumnName = "id")
 	private Set<Product> productList = new HashSet<>();
 
-	public Set<Product> getProductList() {
-		return productList;
-	}
-
-	public void setProductList(Set<Product> productList) {
-		this.productList = productList;
-	}
-
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cat_id", referencedColumnName = "id")
 	private Set<ProductAttribute> prodAttributeList = new HashSet<>();
-
-	public Set<ProductAttribute> getProdAttributeList() {
-		return prodAttributeList;
-	}
-
-	public void setProdAttributeList(Set<ProductAttribute> prodAttributeList) {
-		this.prodAttributeList = prodAttributeList;
-	}
 
 }

@@ -22,7 +22,7 @@ import lombok.Data;
 @Table(name = "Product")
 public class Product {
 
-	public Product(String product, String price, String desc, int availableQuantity,
+	public Product(String product, String price, String desc, Integer availableQuantity,
 			Set<ProductAttribute> prodAttributeList, Set<prodImages> prodImagesList, Long sec_id, Long cat_id,
 			Long brand_id) {
 		super();

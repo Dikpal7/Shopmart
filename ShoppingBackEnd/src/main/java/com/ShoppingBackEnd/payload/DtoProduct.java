@@ -16,7 +16,7 @@ public class DtoProduct {
 	private Long prodSectionId;
 	private Long prodBrandId;
 	private String description;
-	private String quantity;
+	private Integer quantity;
 	private Set<ProductAttribute> prodAttributeList;
 	private Set<prodImages> prodImagesList;
 }

@@ -50,7 +50,7 @@ public class EmailSenderService {
 			mailMessage.setTo(email);
 			mailMessage.setSubject("Forget password!");
 			mailMessage.setText("To reset your account password, please click here : "
-					+ "http://localhost:4200/#/pages/reset-password?token=" + confirmationToken.getConfirmationToken());
+					+ "http://localhost:4200/app/reset-password?token=" + confirmationToken.getConfirmationToken());
 
 			sendEmail(mailMessage);
 

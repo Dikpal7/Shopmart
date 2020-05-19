@@ -16,6 +16,18 @@ import lombok.Data;
 @Table(name = "ProductAttribute")
 public class ProductAttribute {
 
+	public ProductAttribute(String keyName, String valueName, Long prod_id, Long cat_id, Long brand_id) {
+		super();
+		this.keyName = keyName;
+		this.valueName = valueName;
+		this.prod_id = prod_id;
+		this.cat_id = cat_id;
+		this.brand_id = brand_id;
+	}
+
+	public ProductAttribute() {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

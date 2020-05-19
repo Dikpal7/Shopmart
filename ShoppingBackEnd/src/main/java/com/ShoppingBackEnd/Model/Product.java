@@ -22,6 +22,30 @@ import lombok.Data;
 @Table(name = "Product")
 public class Product {
 
+	public Product(String product, String price, String desc, int availableQuantity,
+			Set<ProductAttribute> prodAttributeList, Set<prodImages> prodImagesList, Long sec_id, Long cat_id,
+			Long brand_id) {
+		super();
+		this.product = product;
+		this.price = price;
+		this.desc = desc;
+		this.availableQuantity = availableQuantity;
+		this.prodImagesList = prodImagesList;
+		this.sec_id = sec_id;
+		this.cat_id = cat_id;
+		this.brand_id = brand_id;
+		for (ProductAttribute prodAttribute : prodAttributeList) {
+
+			ProductAttribute prodAtb = new ProductAttribute(prodAttribute.getKeyName(), prodAttribute.getValueName(),
+					prodAttribute.getProd_id(), cat_id, brand_id);
+
+			this.prodAttributeList.add(prodAtb);
+		}
+	}
+
+	public Product() {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -37,7 +61,7 @@ public class Product {
 	private String desc;
 
 	@Column(name = "availableQuantity")
-	private String availableQuantity;
+	private int availableQuantity;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "prod_id", referencedColumnName = "id")

@@ -38,5 +38,11 @@ public class Brand {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "brand_id", referencedColumnName = "id")
 	private Set<ProductAttribute> prodAttributeList = new HashSet<>();
+	
+	@Column(name = "sec_id")
+	private Long sec_id;
+	
+	@Column(name = "cat_id")
+	private Long cat_id;
 
 }

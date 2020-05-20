@@ -3,6 +3,7 @@ package com.ShoppingBackEnd.Controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ShoppingBackEnd.Service.AuthService;
 import com.ShoppingBackEnd.Service.EmailSenderService;
+import com.ShoppingBackEnd.payload.ApiResponse;
 import com.ShoppingBackEnd.payload.LoginRequest;
 import com.ShoppingBackEnd.payload.ResetPassword;
 import com.ShoppingBackEnd.payload.SignUpRequest;
@@ -42,7 +44,11 @@ public class AuthController {
 
 	@PostMapping("/sendEmail")
 	public ResponseEntity<?> sendEmail(@Valid @RequestBody String email) {
-		return _emailService.sendEmail(email);
+		if(_emailService.verifyEmail(email))
+			return _emailService.sendEmail(email);
+		else
+			return new ResponseEntity<Object>(new ApiResponse(false, "Email does not exist!"), HttpStatus.BAD_REQUEST);
+			
 	}
 
 	@PostMapping("/verifyToken")

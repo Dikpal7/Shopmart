@@ -36,31 +36,33 @@ public class EmailSenderService {
 
 	/* Sending email to confirm password. */
 	public ResponseEntity<?> sendEmail(String email) {
-		Boolean isExistingUser = userRepository.existsByEmail(email);
-		if (!isExistingUser)
-			return new ResponseEntity<Object>(new ApiResponse(false, "Email does not exist!"), HttpStatus.BAD_REQUEST);
-		else {
-			User user = userRepository.findByEmail(email);
 
-			ConfirmationToken confirmationToken = new ConfirmationToken(user);
+		User user = userRepository.findByEmail(email);
 
-			confirmationTokenRepository.save(confirmationToken);
+		ConfirmationToken confirmationToken = new ConfirmationToken(user);
 
-			SimpleMailMessage mailMessage = new SimpleMailMessage();
-			mailMessage.setTo(email);
-			mailMessage.setSubject("Forget password!");
-			mailMessage.setText("To reset your account password, please click here : "
-					+ "http://localhost:4200/app/reset-password?token=" + confirmationToken.getConfirmationToken());
+		confirmationTokenRepository.save(confirmationToken);
 
-			sendEmail(mailMessage);
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+		mailMessage.setTo(email);
+		mailMessage.setSubject("Forget password!");
+		mailMessage.setText("To reset your account password, please click here : "
+				+ "http://localhost:4200/app/reset-password?token=" + confirmationToken.getConfirmationToken());
 
-			return new ResponseEntity<Object>(new ApiResponse(true, "Email sent successfully!"), HttpStatus.OK);
-		}
+		sendEmail(mailMessage);
+
+		return new ResponseEntity<Object>(new ApiResponse(true, "Email sent successfully!"), HttpStatus.OK);
+
 	}
 
 	/* Verifying for confirmationToken with email */
 	public Boolean verifyToken(String confirmationToken) {
 		ConfirmationToken value = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
 		return value != null;
+	}
+
+	// verifying email address exist or not
+	public Boolean verifyEmail(String email) {
+		return userRepository.existsByEmail(email);
 	}
 }

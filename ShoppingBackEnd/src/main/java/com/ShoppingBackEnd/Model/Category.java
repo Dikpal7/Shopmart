@@ -47,5 +47,8 @@ public class Category {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cat_id", referencedColumnName = "id")
 	private Set<ProductAttribute> prodAttributeList = new HashSet<>();
+	
+	@Column(name = "sec_id")
+	private Long sec_id;
 
 }

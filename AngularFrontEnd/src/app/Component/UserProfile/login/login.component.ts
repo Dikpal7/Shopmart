@@ -65,15 +65,17 @@ export class LoginComponent implements OnInit {
 
   public sendResetLink() {
     this.error = null;
-    this.authService
-      .SendEmail(this.email.value)
-      .subscribe((res: { success: boolean; message: string }) => {
-        if (res.success)
-          this.toastr.success(
-            "Password Reset link send successfully!",
-            "Shopmart"
-          );
-        else this.toastr.error("Email does not exist!", "Shopmart");
-      });
+    this.authService.SendEmail(this.email.value).subscribe(
+      (res) => {
+        this.error = null;
+      },
+      (error) => (
+        (this.error = error.message),
+        this.toastr.error("Email does not exist!", "Shopmart")
+      )
+    );
+    if (this.error == null) {
+      this.toastr.success("Password Reset link send successfully!", "Shopmart");
+    }
   }
 }

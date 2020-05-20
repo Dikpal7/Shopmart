@@ -6,7 +6,7 @@ import {
 } from "@angular/router";
 import { Observable, empty, EmptyError, observable, EMPTY } from "rxjs";
 import { ProdService } from "../DataServices/prod.service";
-import { catchError } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -19,6 +19,9 @@ export class ProdResolverService implements Resolve<Observable<any>> {
     state: RouterStateSnapshot
   ): Observable<any> {
     return this.service.getMainCategory().pipe(
+      map((res: { data: any[]; msg: string }) => {
+        return res.data;
+      }),
       catchError((error) => {
         return empty();
       })

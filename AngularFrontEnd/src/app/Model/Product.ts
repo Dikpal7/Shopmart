@@ -1,6 +1,7 @@
 import { ProdAttribute } from "./ProdAttribute";
 
 export class Product {
+  id: number;
   productName: string;
   price: string;
   description: string;

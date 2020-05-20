@@ -7,6 +7,7 @@ import { LoginComponent } from "./Component/UserProfile/login/login.component";
 import { SignupComponent } from "./Component/UserProfile/signup/signup.component";
 import { ResetPasswordComponent } from "./Component/UserProfile/reset-password/reset-password.component";
 import { AdminComponent } from "./Component/admin/admin.component";
+import { AuthGuard } from "./Services/Auth/auth.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "app", pathMatch: "full" },

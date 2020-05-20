@@ -12,6 +12,7 @@ import { ResetPasswordComponent } from "./Component/UserProfile/reset-password/r
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { AdminComponent } from "./Component/admin/admin.component";
+import { MaterialModule } from "./SharedModule/material.module";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AdminComponent } from "./Component/admin/admin.component";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

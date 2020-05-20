@@ -25,7 +25,9 @@ export class MegamenuComponent implements OnInit {
   }
 
   public logout() {
-    if (this.authService.logout()) window.location.reload();
+    if (this.authService.logout()) {
+      window.location.replace("app");
+    }
   }
 
   public loginBtn() {

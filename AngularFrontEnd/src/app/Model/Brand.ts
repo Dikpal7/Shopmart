@@ -1,5 +1,9 @@
+import { Product } from "./Product";
+
 export class Brand {
-  brand: string;
+  id: number;
+  brandName: string;
+  productList: Product[];
   sec_id: number;
   cat_id: number;
 }

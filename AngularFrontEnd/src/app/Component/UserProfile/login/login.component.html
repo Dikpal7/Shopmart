@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row h-100 justify-content-center align-items-center my-5">
+    <div class="card" style="width: 50%;">
+      <div class="card-header">
+        Sign In to Shopmart
+      </div>
+      <div class="card-body">
+        <form [formGroup]="loginForm" (submit)="login()">
+          <div class="form-group">
+            <label for="name">Username</label>
+            <input
+              class="form-control"
+              type="text"
+              id="username"
+              placeholder="Username"
+              formControlName="username"
+            />
+          </div>
+          <div class="form-group mb-4">
+            <label for="password">Password</label>
+            <input
+              class="form-control"
+              formControlName="password"
+              type="password"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <div class="text-danger mb-4" *ngIf="error">
+            <small>{{ error }}</small>
+          </div>
+          <button
+            class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="loginForm.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+      <div class="card-footer">
+        <span>
+          <!-- <small><a href="app/forgot-password">Forgot password ?</a></small> -->
+          <small
+            ><a
+              href=""
+              class="text-primary"
+              data-toggle="modal"
+              data-target="#forgetpassword"
+            >
+              Forgot Password ?
+            </a></small
+          >
+          <small
+            ><a class="float-right" href="app/sign-up"
+              >New to shopmart? Create an account</a
+            ></small
+          >
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- forgot password -->
+  <div class="modal fade" id="forgetpassword">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reset Password Link</h5>
+          <button class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="forgetPwdForm">
+            <div class="form-group mb-0">
+              <input
+                type="email"
+                placeholder=" Email Id"
+                class="form-control"
+                formControlName="email"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+            [disabled]="forgetPwdForm.invalid"
+            (click)="sendResetLink()"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- forgot password -->
+</div>

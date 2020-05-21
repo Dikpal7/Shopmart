@@ -20,6 +20,7 @@ export class AdminComponent implements OnInit {
   description: any;
   sectionObj: Section;
   categoryObj: Category;
+
   constructor(private route: ActivatedRoute, private fb: FormBuilder) {
     this.adminForm = this.fb.group({
       section: new FormControl(""),
@@ -42,12 +43,15 @@ export class AdminComponent implements OnInit {
   }
 
   onChangeSection(sectionId) {
-    this.sectionObj = this.productCategory.find((s) => s.id == sectionId);
-    console.log(this.sectionObj);
+    this.sectionObj = this.productCategory.find(
+      (s) => s.id == parseInt(sectionId, 10)
+    );
+    this.category.value = "";
   }
 
   onChangeCatVal(catId) {
-    this.categoryObj = this.sectionObj.categoryList.find((c) => (c.id = catId));
-    console.log(this.categoryObj);
+    this.categoryObj = this.sectionObj.categoryList.find(
+      (x) => x.id === parseInt(catId, 10)
+    );
   }
 }

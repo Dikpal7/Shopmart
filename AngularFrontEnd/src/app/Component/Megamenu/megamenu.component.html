@@ -119,32 +119,41 @@
         </ul>
       </div>
     </nav>
-
     <!-- Navbar MegaMenu -->
     <div class="navbar pb-0 mt-5" id="smallNav" *ngIf="productCategory != null">
-      <div
-        class="dropdown"
-        id="dropdown"
-        *ngFor="let data of productCategory"
-      >
+      <div class="dropdown" id="dropdown" *ngFor="let data of productCategory">
         <button class="dropbtn dropdown-toggle text-dark">
           <small>{{ data.section }}</small>
         </button>
-        <div class="dropdown-content">
-          <div class="row" *ngFor="let cat of data.categoryList">
-            <div class="column">
-              <ul class="list-unstyled" *ngFor="let brand of cat.brandsList">
-                <li class="">
-                  <p class="text-dark">{{ cat.category }}</p>
-                  <ul class="list-unstyled">
-                    <li class="">
-                      <a class="menu-item text-dark" href="">
-                        {{ brand.brand }}
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+        <div class="dropdown-content mt-0">
+          <div class="row">
+            <div class="col">
+              <table
+                class="table table-sm table-borderless m-3"
+                *ngFor="let cat of data.categoryList"
+              >
+                <thead>
+                  <tr>
+                    <th class="mr-1">
+                      <small class="font-weight-bold"
+                        >{{ cat.category }}
+                        <i class="fa fa-caret-down" aria-hidden="true"></i
+                      ></small>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let brand of cat.brandsList">
+                  <tr>
+                    <th>
+                      <small
+                        ><a class="text-dark" href="">{{
+                          brand.brand
+                        }}</a></small
+                      >
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

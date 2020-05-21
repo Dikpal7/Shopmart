@@ -39,9 +39,9 @@
             <label for="brand">Choose Brand</label>
             <select class="form-control" formControlName="brand">
               <option
-                *ngFor="let brObj of categoryObj.brandsList"
-                [value]="brObj.id"
-                >{{ brObj.brand }}</option
+                *ngFor="let brandObj of categoryObj.brandsList"
+                [value]="brandObj.id"
+                >{{ brandObj.brand }}</option
               >
             </select>
           </div>

@@ -7,12 +7,17 @@
   align-self: center;
 }
 
-smallNav a {
-  float: left;
-  font-size: 9px;
-  color: white;
-  text-align: center;
-  padding: 10px 12px;
+// #smallNav a {
+//   float: left;
+//   font-size: 9px;
+//   color: white;
+//   text-align: center;
+//   padding: 10px 12px;
+//   text-decoration: none;
+// }
+
+#smallNav a {
+  text-decoration: none;
 }
 
 #dropdown {
@@ -37,36 +42,36 @@ smallNav a {
 // }
 
 .dropdown-content {
-  overflow: visible;
+  //overflow: hidden;
   display: none;
   position: fixed;
   background-color: whitesmoke;
-  width: 78%;
+  width: 80%;
   left: 0;
-  margin-left: 11%;
+  margin-left: 10%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  align-self: center;
+  //align-self: center;
 }
 
-.dropdown-content .header {
-  padding: 10px;
-  color: whitesmoke;
-  align-self: center;
-}
+// .dropdown-content .header {
+//   padding: 10px;
+//   color: whitesmoke;
+//   align-self: center;
+// }
 
 #dropdown:hover .dropdown-content {
   background: whitesmoke;
   display: block;
-  align-self: center;
+  //align-self: center;
 }
 
 .column {
   float: left;
-  width: 100%;
+  width: 40%;
   padding: 10px;
   background-color: whitesmoke;
-  height: 450px;
+  height: 100px;
 }
 
 .column a {

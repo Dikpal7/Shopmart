@@ -27,7 +27,7 @@ public class Brand {
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
-	@Column(name = "brand", unique = true)
+	@Column(name = "brand", nullable = false)
 	private String brand;
 
 	@OneToMany(cascade = CascadeType.ALL)

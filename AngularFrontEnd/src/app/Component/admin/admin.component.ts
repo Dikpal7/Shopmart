@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
+import { Section } from "src/app/Model/Section";
+import { Category } from "src/app/Model/Category";
 
 @Component({
   selector: "app-admin",
@@ -9,9 +11,6 @@ import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
 })
 export class AdminComponent implements OnInit {
   productCategory: any[];
-  categoryList: any[];
-  brandsList: any[];
-  temp: any[];
   adminForm: FormGroup;
   section: any;
   category: any;
@@ -19,6 +18,8 @@ export class AdminComponent implements OnInit {
   productName: any;
   price: any;
   description: any;
+  sectionObj: Section;
+  categoryObj: Category;
   constructor(private route: ActivatedRoute, private fb: FormBuilder) {
     this.adminForm = this.fb.group({
       section: new FormControl(""),
@@ -41,7 +42,12 @@ export class AdminComponent implements OnInit {
   }
 
   onChangeSection(sectionId) {
-    this.categoryList = this.productCategory.find((s) => s.id == sectionId);
-    console.log(this.categoryList);
+    this.sectionObj = this.productCategory.find((s) => s.id == sectionId);
+    console.log(this.sectionObj);
+  }
+
+  onChangeCatVal(catId) {
+    this.categoryObj = this.sectionObj.categoryList.find((c) => (c.id = catId));
+    console.log(this.categoryObj);
   }
 }

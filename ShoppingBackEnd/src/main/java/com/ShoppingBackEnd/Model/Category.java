@@ -20,7 +20,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "Category", uniqueConstraints = { @UniqueConstraint(columnNames = { "category" }) })
+@Table(name = "Category")
 public class Category {
 
 	@Id
@@ -28,6 +28,7 @@ public class Category {
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
+	@Column(name = "category", nullable = false)
 	private String category;
 
 	@OneToMany(cascade = CascadeType.ALL)

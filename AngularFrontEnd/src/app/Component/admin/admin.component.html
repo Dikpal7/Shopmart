@@ -23,24 +23,28 @@
           </div>
           <div class="col-md-4" *ngIf="section.value != ''">
             <label for="category">Choose Category</label>
-            <select class="form-control" formControlName="category">
+            <select
+              class="form-control"
+              formControlName="category"
+              (change)="onChangeCatVal($event.target.value)"
+            >
               <option
-                *ngFor="let cat of categoryList.categoryList"
+                *ngFor="let cat of sectionObj.categoryList"
                 [value]="cat.id"
                 >{{ cat.category }}</option
               >
             </select>
           </div>
-          <!-- <div class="col-md-4" *ngIf="category.value != ''">
+          <div class="col-md-4" *ngIf="category.value != ''">
             <label for="brand">Choose Brand</label>
             <select class="form-control" formControlName="brand">
               <option
-                *ngFor="let brObj of brandsList.brandsList"
+                *ngFor="let brObj of categoryObj.brandsList"
                 [value]="brObj.id"
                 >{{ brObj.brand }}</option
               >
             </select>
-          </div> -->
+          </div>
         </div>
       </div>
       <!-- Selection Boxes -->

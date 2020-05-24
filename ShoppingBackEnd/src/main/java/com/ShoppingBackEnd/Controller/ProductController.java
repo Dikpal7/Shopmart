@@ -6,15 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ShoppingBackEnd.Model.Brand;
 import com.ShoppingBackEnd.Model.Category;
+import com.ShoppingBackEnd.Model.Product;
 import com.ShoppingBackEnd.Model.Section;
+import com.ShoppingBackEnd.Service.AdminService;
 import com.ShoppingBackEnd.Service.ProductService;
 import com.ShoppingBackEnd.payload.ApiResponse;
 import com.ShoppingBackEnd.payload.CommonResponse;
+import com.ShoppingBackEnd.payload.DtoProduct;
 
 @RestController
 @RequestMapping("/product")
@@ -22,6 +27,9 @@ public class ProductController {
 
 	@Autowired
 	ProductService _productService;
+	
+	@Autowired
+	AdminService _adminService;
 
 	@GetMapping("/section")
 	public ResponseEntity<CommonResponse<List<Section>>> getSections() {
@@ -60,4 +68,5 @@ public class ProductController {
 					new CommonResponse<>(new ApiResponse(false, e.getMessage()), null), HttpStatus.NOT_FOUND);
 		}
 	}
+	
 }

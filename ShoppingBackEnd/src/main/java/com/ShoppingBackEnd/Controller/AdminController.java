@@ -1,6 +1,7 @@
 package com.ShoppingBackEnd.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,7 @@ public class AdminController {
 	AdminService _adminService;
 
 	@PostMapping("/addProduct")
-	public ApiResponse addproduct(@RequestBody DtoProduct dtoProduct) {
+	public ResponseEntity<ApiResponse> addProduct(@RequestBody DtoProduct dtoProduct) {
 		return _adminService.addProduct(dtoProduct);
 	}
-
 }

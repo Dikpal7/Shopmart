@@ -33,10 +33,10 @@ public class ProductAttribute {
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
-	@Column(name = "keyName", unique = true, nullable = false)
+	@Column(name = "keyName", nullable = false)
 	private String keyName;
 
-	@Column(name = "valueName", unique = true, nullable = false)
+	@Column(name = "valueName", nullable = false)
 	private String valueName;
 
 	@JsonIgnore

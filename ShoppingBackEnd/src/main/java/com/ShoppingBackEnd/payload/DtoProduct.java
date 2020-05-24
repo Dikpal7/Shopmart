@@ -9,14 +9,15 @@ import lombok.Data;
 
 @Data
 public class DtoProduct {
-
-	private String productName;
+	
+	private Long id;
+	private String product;
 	private String price;
-	private Long prodCatId;
-	private Long prodSectionId;
-	private Long prodBrandId;
-	private String description;
-	private Integer quantity;
+	private Long cat_Id;
+	private Long sec_id;
+	private Long Brand_id;
+	private String desc;
+	private Integer availableQuantity;
 	private Set<ProductAttribute> prodAttributeList;
 	private Set<prodImages> prodImagesList;
 }

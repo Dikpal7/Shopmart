@@ -1,6 +1,8 @@
 package com.ShoppingBackEnd.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ShoppingBackEnd.Model.Product;
@@ -14,19 +16,19 @@ public class AdminService {
 	@Autowired
 	ProductRepo _prodRepo;
 
-	public ApiResponse addProduct(DtoProduct dtoProduct) {
+	public ResponseEntity<ApiResponse> addProduct(DtoProduct dtoProduct) {
 
 		try {
-			Product product = new Product(dtoProduct.getProductName(), dtoProduct.getPrice(),
-					dtoProduct.getDescription(), dtoProduct.getQuantity(), dtoProduct.getProdAttributeList(),
-					dtoProduct.getProdImagesList(), dtoProduct.getProdSectionId(), dtoProduct.getProdCatId(),
-					dtoProduct.getProdBrandId());
+			Product product = new Product(dtoProduct.getProduct(), dtoProduct.getPrice(),
+					dtoProduct.getDesc(), dtoProduct.getAvailableQuantity(), dtoProduct.getProdAttributeList(),
+					dtoProduct.getProdImagesList(), dtoProduct.getSec_id(), dtoProduct.getCat_Id(),
+					dtoProduct.getBrand_id());
 
 			_prodRepo.save(product);
-			return new ApiResponse(true, "Product added successfully!");
+			return new ResponseEntity<ApiResponse>(new ApiResponse(true, "product inserted successfully!"), HttpStatus.CREATED);
 
 		} catch (Exception e) {
-			return new ApiResponse(false, e.getMessage());
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 	}
 }

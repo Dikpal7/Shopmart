@@ -2,12 +2,12 @@ import { ProdAttribute } from "./ProdAttribute";
 
 export class Product {
   id: number;
-  productName: string;
+  product: string;
   price: string;
-  description: string;
+  desc: string;
   availableQuantity: number;
-  brandId: number;
-  secId: number;
-  catId: number;
-  prodAttributes: ProdAttribute[];
+  brand_id: number;
+  sec_id: number;
+  cat_id: number;
+  prodAttributeList: ProdAttribute[] = [];
 }

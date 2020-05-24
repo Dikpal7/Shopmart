@@ -6,14 +6,15 @@
     <hr class="my-2" />
 
     <form [formGroup]="adminForm" (submit)="saveProduct()">
-      <!-- Selection Boxes -->
       <div class="form-group">
+        <!-- Selection Boxes -->
         <div class="row">
           <div class="col-md-4">
             <label for="section">Choose Section</label>
             <select
               class="form-control"
               formControlName="section"
+              required
               (change)="onChangeSection($event.target.value)"
             >
               <option *ngFor="let sec of productCategory" [value]="sec.id">{{
@@ -25,6 +26,7 @@
             <label for="category">Choose Category</label>
             <select
               class="form-control"
+              required
               formControlName="category"
               (change)="onChangeCatVal($event.target.value)"
             >
@@ -37,7 +39,7 @@
           </div>
           <div class="col-md-4" *ngIf="category.value != ''">
             <label for="brand">Choose Brand</label>
-            <select class="form-control" formControlName="brand">
+            <select class="form-control" formControlName="brand" required>
               <option
                 *ngFor="let brandObj of categoryObj.brandsList"
                 [value]="brandObj.id"
@@ -46,90 +48,128 @@
             </select>
           </div>
         </div>
-      </div>
-      <!-- Selection Boxes -->
+        <!-- Selection Boxes -->
 
-      <!-- accordian -->
-      <div id="accordion">
-        <!-- product-details -->
-        <div class="card mt-2">
-          <div class="card-header py-2 font-weight-bold text-dark">
-            <a href="#detail" data-parent="#accordion" data-toggle="collapse"
-              >Product Details
-            </a>
-          </div>
-          <div id="detail" class="collapse show">
-            <div class="card-body pb-1">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="productName"
-                      placeholder="Product Name"
-                    />
+        <!-- accordian -->
+        <div id="accordion">
+          <!-- product-details -->
+          <div class="card mt-2">
+            <div class="card-header py-2 font-weight-bold text-dark">
+              <a href="#detail" data-parent="#accordion" data-toggle="collapse"
+                >Product Details
+              </a>
+            </div>
+            <div id="detail" class="collapse show">
+              <div class="card-body pb-1">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="productName"
+                        placeholder="Product Name"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="price"
+                        placeholder="Price of product"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="quantity"
+                        placeholder=" Product Quantity"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="price"
-                      placeholder="Price of product"
-                    />
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <textarea
+                        class="form-control"
+                        id="desc"
+                        cols="3"
+                        rows="2"
+                        formControlName="description"
+                        placeholder="Product Description"
+                        required
+                      ></textarea>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <textarea
-                  class="form-control"
-                  id="desc"
-                  cols="3"
-                  rows="2"
-                  formControlName="description"
-                  placeholder="Product Description"
-                ></textarea>
+            </div>
+          </div>
+
+          <!-- product specification -->
+          <div class="card mt-2" *ngIf="getSpecArrayLenght()">
+            <div class="card-header py-2 font-weight-bold">
+              <a
+                href="#Specifications"
+                data-parent="#accordion"
+                data-toggle="collapse"
+                >Product Specifications
+              </a>
+            </div>
+            <div id="Specifications" class="collapse">
+              <div class="card-body pb-1">
+                <div
+                  class="form-group"
+                  *ngFor="let cntrl of getFormArray().controls; let i = index"
+                >
+                  <!-- trial -->
+
+                  <div class="row" *ngIf="getKeyName(i) != ''">
+                    <div class="col-4">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="keyName{{ i }}"
+                        readonly
+                        aria-readonly="true"
+                        value="{{ getKeyName(i) }}"
+                        placeholder="{{ getKeyName(i) }}"
+                      />
+                    </div>
+                    <div class="col-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        required
+                        id="valueName{{ i }}"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- trial -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- product specification -->
-        <div class="card mt-2">
-          <div class="card-header py-2 font-weight-bold">
-            <a
-              href="#Specifications"
-              data-parent="#accordion"
-              data-toggle="collapse"
-              >Product Specifications
-            </a>
-          </div>
-          <div id="Specifications" class="collapse">
-            <div class="card-body pb-1">
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-6">
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Spec key"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Spec value"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="row">
+          <div class="col-4">
+            <button
+              type="submit"
+              class="btn btn-outline-primary form-control mt-2"
+              [disabled]="adminForm.invalid"
+            >
+              Save Product
+            </button>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@
             <label for="section">Choose Section</label>
             <select
               class="form-control"
-              formControlName="section"
+              formControlName="sec_id"
               required
               (change)="onChangeSection($event.target.value)"
             >
@@ -22,12 +22,12 @@
               }}</option>
             </select>
           </div>
-          <div class="col-md-4" *ngIf="section.value != ''">
+          <div class="col-md-4" *ngIf="sec_id.value != ''">
             <label for="category">Choose Category</label>
             <select
               class="form-control"
               required
-              formControlName="category"
+              formControlName="cat_id"
               (change)="onChangeCatVal($event.target.value)"
             >
               <option
@@ -37,9 +37,9 @@
               >
             </select>
           </div>
-          <div class="col-md-4" *ngIf="category.value != ''">
+          <div class="col-md-4" *ngIf="cat_id.value != ''">
             <label for="brand">Choose Brand</label>
-            <select class="form-control" formControlName="brand" required>
+            <select class="form-control" formControlName="brand_id" required>
               <option
                 *ngFor="let brandObj of categoryObj.brandsList"
                 [value]="brandObj.id"
@@ -67,7 +67,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        formControlName="productName"
+                        formControlName="product"
                         placeholder="Product Name"
                         required
                       />
@@ -89,7 +89,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        formControlName="quantity"
+                        formControlName="availableQuantity"
                         placeholder=" Product Quantity"
                         required
                       />
@@ -104,7 +104,7 @@
                         id="desc"
                         cols="3"
                         rows="2"
-                        formControlName="description"
+                        formControlName="desc"
                         placeholder="Product Description"
                         required
                       ></textarea>
@@ -126,36 +126,85 @@
               </a>
             </div>
             <div id="Specifications" class="collapse">
-              <div class="card-body pb-1">
+              <div class="card-body">
                 <div
-                  class="form-group"
-                  *ngFor="let cntrl of getFormArray().controls; let i = index"
+                  formArrayName="prodAttributeList"
+                  *ngFor="
+                    let item of adminForm.get('prodAttributeList').controls;
+                    let i = index
+                  "
                 >
-                  <!-- trial -->
-
-                  <div class="row" *ngIf="getKeyName(i) != ''">
-                    <div class="col-4">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="keyName{{ i }}"
-                        readonly
-                        aria-readonly="true"
-                        value="{{ getKeyName(i) }}"
-                        placeholder="{{ getKeyName(i) }}"
-                      />
-                    </div>
-                    <div class="col-8">
-                      <input
-                        type="text"
-                        class="form-control"
-                        required
-                        id="valueName{{ i }}"
-                      />
+                  <div [formGroupName]="i">
+                    <div class="row" *ngIf="getKeyName(i) != ''">
+                      <div class="col-4">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="keyName{{ i }}"
+                          readonly
+                          formControlName="keyName"
+                          aria-readonly="true"
+                          placeholder="{{ getKeyName(i) }}"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <input
+                          type="text"
+                          class="form-control"
+                          required
+                          formControlName="valueName"
+                          id="valueName{{ i }}"
+                        />
+                      </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                  <!-- trial -->
+          <!-- product-Images -->
+          <div class="card mt-2">
+            <div class="card-header py-2 font-weight-bold">
+              <a href="#Images" data-parent="#accordion" data-toggle="collapse"
+                >Product Images
+              </a>
+            </div>
+            <div id="Images" class="collapse show">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-5 pl-0">
+                    <div class="dragDrop" appFileDrapDrop (fileDropped)="onFileDropped($event)">
+                      <input
+                        type="file"
+                        #imgFile
+                        id="imgFile"
+                        multiple
+                        (change)="fileBrowseHandler($event.target.files)"
+                      />
+                      <img class="mt-5" src="assets/ImgDragDrop/ic-upload-file.svg" alt="" />
+                      <h3 class="mt-3">Drag and drop file here</h3>
+                      <h3>Or</h3>
+                      <label for="imgFile">Browse for file</label>
+                    </div>
+                  </div>
+                  <div class="col-7">
+                    <div class="files-list">
+                      <div class="single-file" *ngFor="let file of imgFilesArray; let i = index">
+                        <img src="assets/ImgDragDrop/ic-file.svg" width="45px" alt="file">
+                        <div class="info">
+                          <h4 class="name">
+                            {{ file?.name }}
+                          </h4>
+                          <p class="size">
+                            {{ formatBytes(file?.size) }}
+                          </p>
+                          <app-progress [progress]="file?.progress"></app-progress>
+                        </div>
+                        <img src="assets/ImgDragDrop/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -165,7 +214,7 @@
           <div class="col-4">
             <button
               type="submit"
-              class="btn btn-outline-primary form-control mt-2"
+              class="btn btn-block btn-outline-primary form-control mt-2"
               [disabled]="adminForm.invalid"
             >
               Save Product

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {
   FormGroup,
@@ -10,9 +10,8 @@ import {
 import { Section } from "src/app/Model/Section";
 import { Category } from "src/app/Model/Category";
 import { MasterSpecification } from "src/app/Model/MasterSpecification";
-import { Product } from "src/app/Model/Product";
-import { ProdAttribute } from "src/app/Model/ProdAttribute";
 import { ProdService } from "src/app/Services/DataServices/prod.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-admin",
@@ -20,117 +19,148 @@ import { ProdService } from "src/app/Services/DataServices/prod.service";
   styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent implements OnInit {
+  @ViewChild("imgFile", { static: false }) fileDropEl: ElementRef;
+
   productCategory: any[];
   adminForm: FormGroup;
-  specsArrayList: MasterSpecification[];
-  section: any;
-  category: any;
-  brand: any;
-  productName: any;
-  price: any;
-  description: any;
-  quantity: any;
-  sectionObj: Section;
+  masterSpecsList: MasterSpecification[];
   categoryObj: Category;
-  productObj: Product;
-  prodAtbObj: ProdAttribute;
+  sectionObj: Section;
+  prodAttributeList: FormArray;
+  imgFilesArray: any[] = [];
+  sec_id: any;
+  cat_id: any;
+  imgUrl: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private prodService: ProdService
+    private prodService: ProdService,
+    private toastr: ToastrService
   ) {
     this.adminForm = this.fb.group({
-      section: new FormControl("", Validators.required),
-      category: new FormControl("", Validators.required),
-      brand: new FormControl("", Validators.required),
-      productName: new FormControl("", Validators.required),
+      sec_id: new FormControl("", Validators.required),
+      cat_id: new FormControl("", Validators.required),
+      brand_id: new FormControl("", Validators.required),
+      product: new FormControl("", Validators.required),
       price: new FormControl("", Validators.required),
-      description: new FormControl("", Validators.required),
-      quantity: new FormControl("", Validators.required),
-
-      specsArray: new FormArray([]),
+      desc: new FormControl("", Validators.required),
+      availableQuantity: new FormControl("", Validators.required),
+      prodAttributeList: this.fb.array([]),
     });
-    this.section = this.adminForm.get("section");
-    this.category = this.adminForm.get("category");
-    this.brand = this.adminForm.get("brand");
-    this.productName = this.adminForm.get("productName");
-    this.price = this.adminForm.get("price");
-    this.description = this.adminForm.get("description");
-    this.quantity = this.adminForm.get("quantity");
+
+    this.sec_id = this.adminForm.get("sec_id");
+    this.cat_id = this.adminForm.get("cat_id");
+    this.prodAttributeList = this.adminForm.get(
+      "prodAttributeList"
+    ) as FormArray;
   }
 
   ngOnInit() {
     this.productCategory = this.route.snapshot.data.data;
   }
 
-  getFormArray() {
-    return this.adminForm.get("specsArray") as FormArray;
-  }
-
   onChangeSection(sectionId) {
     this.sectionObj = this.productCategory.find(
       (s) => s.id == parseInt(sectionId, 10)
     );
-    this.category.value = "";
+    this.cat_id.value = "";
   }
 
   onChangeCatVal(catId) {
-    this.getFormArray().clear;
+    this.prodAttributeList.clear;
     this.categoryObj = this.sectionObj.categoryList.find(
       (x) => x.id === parseInt(catId, 10)
     );
-    this.specsArrayList = this.categoryObj.masterSpecList;
+    this.masterSpecsList = this.categoryObj.masterSpecList;
 
-    if (this.specsArrayList.length > 0) {
+    if (this.masterSpecsList.length > 0) {
       for (
-        let i = this.getFormArray().length;
-        i < this.specsArrayList.length;
+        let i = this.prodAttributeList.length;
+        i < this.masterSpecsList.length;
         i++
       ) {
-        this.getFormArray().push(
-          this.fb.group({
-            keyName: [""],
-            valueName: [""],
-          })
-        );
+        this.prodAttributeList.push(this.addControls(i));
       }
     }
   }
 
-  getKeyName(index) {
-    if (this.specsArrayList != null && this.specsArrayList.length > 0)
-      return this.specsArrayList[index].name;
-    else return null;
+  addControls(index): FormGroup {
+    return this.fb.group({
+      keyName: this.masterSpecsList[index].name,
+      valueName: "",
+    });
   }
+
+  getKeyName(index) {
+    if (this.masterSpecsList != null && this.masterSpecsList.length > 0)
+      return this.masterSpecsList[index].name;
+    else return "";
+  }
+
   getSpecArrayLenght() {
-    if (this.specsArrayList != null) return this.specsArrayList.length > 0;
+    if (this.masterSpecsList != null) return this.masterSpecsList.length > 0;
     else return false;
   }
 
-  saveProduct() {
-    this.productObj = new Product();
-    this.productObj.product = this.productName.value;
-    this.productObj.price = this.price.value;
-    this.productObj.desc = this.description.value;
-    this.productObj.availableQuantity = parseInt(this.quantity.value, 10);
-    this.productObj.sec_id = parseInt(this.section.value, 10);
-    this.productObj.cat_id = parseInt(this.category.value, 10);
-    this.productObj.brand_id = parseInt(this.brand.value, 10);
-    if (this.getSpecArrayLenght()) {
-      for (let i = 0; i < this.specsArrayList.length; i++) {
-        this.prodAtbObj = new ProdAttribute();
-        this.prodAtbObj.brand_id = parseInt(this.brand.value, 10);
-        this.prodAtbObj.cat_id = parseInt(this.category.value, 10);
-        this.prodAtbObj.keyName = (<HTMLInputElement>(
-          document.getElementById("keyName" + i)
-        )).value;
-        this.prodAtbObj.valueName = (<HTMLInputElement>(
-          document.getElementById("valueName" + i)
-        )).value;
-        this.productObj.prodAttributeList.push(this.prodAtbObj);
+  fileBrowseHandler(files) {
+    this.prepareFilesList(files);
+  }
+  onFileDropped($event) {
+    this.prepareFilesList($event);
+  }
+
+  uploadFilesSimulator(index: number) {
+    setTimeout(() => {
+      if (index === this.imgFilesArray.length) {
+        return;
+      } else {
+        const progressInterval = setInterval(() => {
+          if (this.imgFilesArray[index].progress === 100) {
+            clearInterval(progressInterval);
+            this.uploadFilesSimulator(index + 1);
+          } else {
+            this.imgFilesArray[index].progress += 5;
+          }
+        }, 200);
       }
-    } 
-    this.prodService.addProduct(this.productObj);
+    }, 1000);
+  }
+
+  prepareFilesList(files: Array<any>) {
+    for (const item of files) {
+      item.progress = 0;
+      this.imgFilesArray.push(item);
+      // const reader = new FileReader();
+      // reader.readAsDataURL(item);
+      // reader.onload = (e: any) => {
+      //   this.imgUrl.push(e.target.result);
+      // };
+    }
+    this.fileDropEl.nativeElement.value = "";
+    this.uploadFilesSimulator(0);
+  }
+
+  deleteFile(index: number) {
+    if (this.imgFilesArray[index].progress < 100) {
+      this.toastr.warning("upload in progress...", "Shopmart");
+      return;
+    }
+    this.imgFilesArray.splice(index, 1);
+  }
+
+  formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) {
+      return "0 Bytes";
+    }
+    const k = 1024;
+    const dm = decimals <= 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  }
+
+  saveProduct() {
+    console.log(this.adminForm.getRawValue());
   }
 }

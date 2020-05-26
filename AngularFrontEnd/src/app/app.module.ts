@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { AdminComponent } from "./Component/admin/admin.component";
 import { MaterialModule } from "./SharedModule/material.module";
+import { FileDrapDropDirective } from './Component/Directive/file-drap-drop.directive';
+import { ProgressComponent } from './Component/admin/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { MaterialModule } from "./SharedModule/material.module";
     SignupComponent,
     ResetPasswordComponent,
     AdminComponent,
+    FileDrapDropDirective,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,

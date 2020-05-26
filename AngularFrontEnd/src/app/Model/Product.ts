@@ -1,4 +1,5 @@
 import { ProdAttribute } from "./ProdAttribute";
+import { ProdImages } from "./ProdImages";
 
 export class Product {
   id: number;
@@ -10,4 +11,5 @@ export class Product {
   sec_id: number;
   cat_id: number;
   prodAttributeList: ProdAttribute[] = [];
+  prodImagesList: ProdImages[] = [];
 }

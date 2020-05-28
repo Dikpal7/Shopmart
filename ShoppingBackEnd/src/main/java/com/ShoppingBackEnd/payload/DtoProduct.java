@@ -13,7 +13,7 @@ public class DtoProduct {
 	private Long id;
 	private String product;
 	private String price;
-	private Long cat_Id;
+	private Long cat_id;
 	private Long sec_id;
 	private Long Brand_id;
 	private String desc;

@@ -21,7 +21,7 @@ public class AdminService {
 		try {
 			Product product = new Product(dtoProduct.getProduct(), dtoProduct.getPrice(),
 					dtoProduct.getDesc(), dtoProduct.getAvailableQuantity(), dtoProduct.getProdAttributeList(),
-					dtoProduct.getProdImagesList(), dtoProduct.getSec_id(), dtoProduct.getCat_Id(),
+					dtoProduct.getProdImagesList(), dtoProduct.getSec_id(), dtoProduct.getCat_id(),
 					dtoProduct.getBrand_id());
 
 			_prodRepo.save(product);

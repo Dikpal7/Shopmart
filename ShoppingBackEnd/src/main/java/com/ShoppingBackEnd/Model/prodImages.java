@@ -20,12 +20,11 @@ public class prodImages {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
-
-	@Column(name = "imageUrl", unique = true, nullable = false)
+	
+	@Column(name = "imageUrl", nullable = false)
 	private String imageUrl;
 
 	@JsonIgnore
 	@Column(name = "prod_id")
 	private Long prod_id;
-
 }

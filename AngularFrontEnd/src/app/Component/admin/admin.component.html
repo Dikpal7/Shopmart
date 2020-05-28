@@ -1,6 +1,6 @@
 <div class="jumbotron pt-4">
   <div class="container">
-    <h3 class="display-8">
+    <h3 class="h4">
       Admin Section
     </h3>
     <hr class="my-2" />
@@ -203,7 +203,12 @@
                         *ngFor="let file of imgFilesArray; let i = index"
                       >
                         <!-- <img src="assets/ImgDragDrop/ic-file.svg" width="45px" alt="file"> -->
-                        <img [src]="getImgPreview(i)" class="mr-2" width="45px" alt="file" />
+                        <img
+                          [src]="getImgPreview(i)"
+                          class="mr-2"
+                          width="45px"
+                          alt="file"
+                        />
                         <div class="info">
                           <h4 class="name">
                             {{ file?.name }}

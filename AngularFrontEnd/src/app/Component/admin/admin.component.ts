@@ -69,10 +69,13 @@ export class AdminComponent implements OnInit {
       (s) => s.id == parseInt(sectionId, 10)
     );
     this.cat_id.value = "";
+    this.prodAttributeList.clear;
+    this.prodAttributeList.reset();
   }
 
   onChangeCatVal(catId) {
     this.prodAttributeList.clear;
+    this.prodAttributeList.reset();
     this.categoryObj = this.sectionObj.categoryList.find(
       (x) => x.id === parseInt(catId, 10)
     );
@@ -86,6 +89,9 @@ export class AdminComponent implements OnInit {
       ) {
         this.prodAttributeList.push(this.addControls(i));
       }
+    } else {
+      this.prodAttributeList.clear;
+      this.prodAttributeList.reset();
     }
   }
 
@@ -178,8 +184,6 @@ export class AdminComponent implements OnInit {
   }
 
   saveProduct() {
-    if (this.prodService.addProduct(this.adminForm.getRawValue()))
-      this.toastr.success("product added successfully!", "Shopmart");
-    else this.toastr.error("Error occured while inserting product!");
+    this.prodService.addProduct(this.adminForm.getRawValue());
   }
 }

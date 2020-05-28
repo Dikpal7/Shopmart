@@ -20,8 +20,8 @@ export class ProdService {
   addProduct(product: Product) {
     return this.http
       .post(`${this.adminUrl}/addProduct`, product)
-      .subscribe((res) => {
-        return res;
+      .subscribe((res: { success: boolean; message: string }) => {
+        return res.success;
       });
   }
 }

@@ -27,10 +27,12 @@ export class AdminComponent implements OnInit {
   categoryObj: Category;
   sectionObj: Section;
   prodAttributeList: FormArray;
+  prodImagesList: FormArray;
   imgFilesArray: any[] = [];
   sec_id: any;
   cat_id: any;
   imgUrl: any[] = [];
+  isImgSave: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,6 +49,7 @@ export class AdminComponent implements OnInit {
       desc: new FormControl("", Validators.required),
       availableQuantity: new FormControl("", Validators.required),
       prodAttributeList: this.fb.array([]),
+      prodImagesList: this.fb.array([]),
     });
 
     this.sec_id = this.adminForm.get("sec_id");
@@ -54,6 +57,7 @@ export class AdminComponent implements OnInit {
     this.prodAttributeList = this.adminForm.get(
       "prodAttributeList"
     ) as FormArray;
+    this.prodImagesList = this.adminForm.get("prodImagesList") as FormArray;
   }
 
   ngOnInit() {
@@ -106,6 +110,7 @@ export class AdminComponent implements OnInit {
   fileBrowseHandler(files) {
     this.prepareFilesList(files);
   }
+
   onFileDropped($event) {
     this.prepareFilesList($event);
   }
@@ -120,25 +125,37 @@ export class AdminComponent implements OnInit {
             clearInterval(progressInterval);
             this.uploadFilesSimulator(index + 1);
           } else {
-            this.imgFilesArray[index].progress += 5;
+            this.imgFilesArray[index].progress += 25;
           }
-        }, 200);
+        }, 100);
       }
-    }, 1000);
+    }, 500);
   }
 
   prepareFilesList(files: Array<any>) {
+    if (files.length > 5) {
+      this.toastr.warning("Max 5 Images are allowed!", "Shopmart");
+      return;
+    }
     for (const item of files) {
       item.progress = 0;
+      let imageUrl;
       this.imgFilesArray.push(item);
-      // const reader = new FileReader();
-      // reader.readAsDataURL(item);
-      // reader.onload = (e: any) => {
-      //   this.imgUrl.push(e.target.result);
-      // };
+      const reader = new FileReader();
+      reader.readAsDataURL(item);
+      reader.onload = (e: any) => {
+        this.imgUrl.push(e.target.result);
+        imageUrl = btoa(e.target.result);
+        this.prodImagesList.push(this.fb.group({ imageUrl: e.target.result }));
+      };
     }
     this.fileDropEl.nativeElement.value = "";
     this.uploadFilesSimulator(0);
+    this.isImgSave = true;
+  }
+
+  getImgPreview(index) {
+    return this.imgUrl[index];
   }
 
   deleteFile(index: number) {
@@ -161,6 +178,8 @@ export class AdminComponent implements OnInit {
   }
 
   saveProduct() {
-    console.log(this.adminForm.getRawValue());
+    if (this.prodService.addProduct(this.adminForm.getRawValue()))
+      this.toastr.success("product added successfully!", "Shopmart");
+    else this.toastr.error("Error occured while inserting product!");
   }
 }

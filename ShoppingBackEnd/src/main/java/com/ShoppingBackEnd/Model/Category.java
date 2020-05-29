@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -44,12 +43,6 @@ public class Category {
 	@JoinColumn(name = "cat_id", referencedColumnName = "id")
 	private Set<Product> productList = new HashSet<>();
 
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cat_id", referencedColumnName = "id")
-	private Set<ProductAttribute> prodAttributeList = new HashSet<>();
-	
 	@Column(name = "sec_id")
 	private Long sec_id;
-
 }

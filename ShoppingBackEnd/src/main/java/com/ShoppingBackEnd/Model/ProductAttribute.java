@@ -16,13 +16,11 @@ import lombok.Data;
 @Table(name = "ProductAttribute")
 public class ProductAttribute {
 
-	public ProductAttribute(String keyName, String valueName, Long prod_id, Long cat_id, Long brand_id) {
+	public ProductAttribute(String keyName, String valueName, Long prod_id) {
 		super();
 		this.keyName = keyName;
 		this.valueName = valueName;
 		this.prod_id = prod_id;
-		this.cat_id = cat_id;
-		this.brand_id = brand_id;
 	}
 
 	public ProductAttribute() {
@@ -42,13 +40,5 @@ public class ProductAttribute {
 	@JsonIgnore
 	@Column(name = "prod_id")
 	private Long prod_id;
-
-	@JsonIgnore
-	@Column(name = "cat_id")
-	private Long cat_id;
-
-	@JsonIgnore
-	@Column(name = "brand_id")
-	private Long brand_id;
 
 }

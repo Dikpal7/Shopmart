@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import {
   FormGroup,
   FormBuilder,
@@ -31,14 +31,15 @@ export class AdminComponent implements OnInit {
   imgFilesArray: any[] = [];
   sec_id: any;
   cat_id: any;
+  brand_id: any;
   imgUrl: any[] = [];
   isImgSave: boolean;
 
   constructor(
-    private route: ActivatedRoute,
+    private activeRoute: ActivatedRoute,
+    private route: Router,
     private fb: FormBuilder,
-    private prodService: ProdService,
-    private toastr: ToastrService
+    private prodService: ProdService
   ) {
     this.adminForm = this.fb.group({
       sec_id: new FormControl("", Validators.required),
@@ -54,6 +55,7 @@ export class AdminComponent implements OnInit {
 
     this.sec_id = this.adminForm.get("sec_id");
     this.cat_id = this.adminForm.get("cat_id");
+    this.brand_id = this.adminForm.get("brand_id");
     this.prodAttributeList = this.adminForm.get(
       "prodAttributeList"
     ) as FormArray;
@@ -61,7 +63,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productCategory = this.route.snapshot.data.data;
+    this.productCategory = this.activeRoute.snapshot.data.data;
   }
 
   onChangeSection(sectionId) {
@@ -80,7 +82,9 @@ export class AdminComponent implements OnInit {
       (x) => x.id === parseInt(catId, 10)
     );
     this.masterSpecsList = this.categoryObj.masterSpecList;
+  }
 
+  onChangeBrandVal(brandId) {
     if (this.masterSpecsList.length > 0) {
       for (
         let i = this.prodAttributeList.length;
@@ -109,7 +113,8 @@ export class AdminComponent implements OnInit {
   }
 
   getSpecArrayLenght() {
-    if (this.masterSpecsList != null) return this.masterSpecsList.length > 0;
+    if (this.masterSpecsList != null && this.brand_id.value != "")
+      return this.masterSpecsList.length > 0;
     else return false;
   }
 
@@ -184,6 +189,9 @@ export class AdminComponent implements OnInit {
   }
 
   saveProduct() {
-    this.prodService.addProduct(this.adminForm.getRawValue());
+    if (this.prodService.addProduct(this.adminForm.getRawValue())) {
+      this.adminForm.reset();
+      this.route.navigate(["app"]);
+    }
   }
 }

@@ -39,7 +39,10 @@
           </div>
           <div class="col-md-4" *ngIf="cat_id.value != ''">
             <label for="brand">Choose Brand</label>
-            <select class="form-control" formControlName="brand_id" required>
+            <select class="form-control" formControlName="brand_id" 
+            required
+            (change)="onChangeBrandVal($event.target.value)"
+            >
               <option
                 *ngFor="let brandObj of categoryObj.brandsList"
                 [value]="brandObj.id"

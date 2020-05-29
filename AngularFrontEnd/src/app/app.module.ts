@@ -15,6 +15,8 @@ import { AdminComponent } from "./Component/admin/admin.component";
 import { MaterialModule } from "./SharedModule/material.module";
 import { FileDrapDropDirective } from './Component/Directive/file-drap-drop.directive';
 import { ProgressComponent } from './Component/admin/progress/progress.component';
+import { ProductDetailComponent } from './Component/Product/product-detail/product-detail.component';
+import { ProductsComponent } from './Component/Product/products/products.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { ProgressComponent } from './Component/admin/progress/progress.component
     AdminComponent,
     FileDrapDropDirective,
     ProgressComponent,
+    ProductDetailComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

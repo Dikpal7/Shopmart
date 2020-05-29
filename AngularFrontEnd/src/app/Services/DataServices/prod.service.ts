@@ -20,16 +20,13 @@ export class ProdService {
   }
 
   addProduct(product: Product) {
-    return this.http.post(`${this.adminUrl}/addProduct`, product).pipe(
-      map((res: { success: boolean; message: string }) => {
+    return this.http
+      .post(`${this.adminUrl}/addProduct`, product)
+      .subscribe((res: { success: boolean; message: string }) => {
         if (res.success)
-          this.toastr.success("product added successfully!", "Shopmart");
-        else
-          this.toastr.error(
-            "Error occured while inserting product!",
-            "Shopmart"
-          );
-      })
-    );
+          this.toastr.success("Product added successfully!", "Shopmart");
+        else this.toastr.error("Error while adding Product!", "Shopmart");
+        return res.success;
+      });
   }
 }

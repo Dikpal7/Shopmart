@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+@SuppressWarnings("ALL")
 @Entity
 @Data
 @Table(name = "Brand")
@@ -37,5 +38,4 @@ public class Brand {
 
 	@Column(name = "cat_id")
 	private Long cat_id;
-
 }

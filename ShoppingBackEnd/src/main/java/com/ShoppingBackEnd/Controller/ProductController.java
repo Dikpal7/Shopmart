@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +17,6 @@ import com.ShoppingBackEnd.Service.AdminService;
 import com.ShoppingBackEnd.Service.ProductService;
 import com.ShoppingBackEnd.payload.ApiResponse;
 import com.ShoppingBackEnd.payload.CommonResponse;
-import com.ShoppingBackEnd.payload.DtoProduct;
 
 @RestController
 @RequestMapping("/product")
@@ -27,7 +24,7 @@ public class ProductController {
 
 	@Autowired
 	ProductService _productService;
-	
+
 	@Autowired
 	AdminService _adminService;
 
@@ -68,5 +65,18 @@ public class ProductController {
 					new CommonResponse<>(new ApiResponse(false, e.getMessage()), null), HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
+	@GetMapping("/items")
+	public ResponseEntity<CommonResponse<List<Product>>> getProducts() {
+		try {
+			return new ResponseEntity<CommonResponse<List<Product>>>(
+					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getAllProduct()),
+					HttpStatus.OK);
+
+		} catch (Exception e) {
+			return new ResponseEntity<CommonResponse<List<Product>>>(
+					new CommonResponse<>(new ApiResponse(false, e.getMessage()), null), HttpStatus.NOT_FOUND);
+		}
+	}
+
 }

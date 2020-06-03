@@ -21,7 +21,7 @@ import org.hibernate.annotations.NaturalId;
 
 import com.ShoppingBackEnd.Model.Audit.DateAudit;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("All")
 @Entity
 @Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
 		@UniqueConstraint(columnNames = { "email" }) })

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
+@SuppressWarnings("ALL")
 @Entity
 @Data
 @Table(name = "Product")

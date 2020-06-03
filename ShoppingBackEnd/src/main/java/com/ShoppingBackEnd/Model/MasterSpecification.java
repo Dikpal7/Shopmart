@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+@SuppressWarnings("All")
 @Entity
 @Data
 @Table(name = "MasterSpecification")

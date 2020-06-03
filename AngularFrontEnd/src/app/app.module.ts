@@ -13,10 +13,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { AdminComponent } from "./Component/admin/admin.component";
 import { MaterialModule } from "./SharedModule/material.module";
-import { FileDrapDropDirective } from './Component/Directive/file-drap-drop.directive';
-import { ProgressComponent } from './Component/admin/progress/progress.component';
-import { ProductDetailComponent } from './Component/Product/product-detail/product-detail.component';
-import { ProductsComponent } from './Component/Product/products/products.component';
+import { FileDrapDropDirective } from "./Component/Directive/file-drap-drop.directive";
+import { ProgressComponent } from "./Component/admin/progress/progress.component";
+import { ProductDetailComponent } from "./Component/Product/product-detail/product-detail.component";
+import { ProductsComponent } from "./Component/Product/products/products.component";
+import { DashboardComponent } from "./Component/dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ProductsComponent } from './Component/Product/products/products.compone
     ProgressComponent,
     ProductDetailComponent,
     ProductsComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

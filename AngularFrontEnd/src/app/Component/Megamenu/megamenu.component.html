@@ -146,9 +146,11 @@
                   <tr>
                     <th>
                       <small
-                        ><a class="text-dark" href="">{{
-                          brand.brand
-                        }}</a></small
+                        ><a
+                          class="text-dark"
+                          [routerLink]="['items', cat.category]"
+                          >{{ brand.brand }}</a
+                        ></small
                       >
                     </th>
                   </tr>

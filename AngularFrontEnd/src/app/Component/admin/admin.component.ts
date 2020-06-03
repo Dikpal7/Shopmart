@@ -39,7 +39,8 @@ export class AdminComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private route: Router,
     private fb: FormBuilder,
-    private prodService: ProdService
+    private prodService: ProdService,
+    private toastr : ToastrService,
   ) {
     this.adminForm = this.fb.group({
       sec_id: new FormControl("", Validators.required),
@@ -164,6 +165,8 @@ export class AdminComponent implements OnInit {
     this.uploadFilesSimulator(0);
     this.isImgSave = true;
   }
+
+  
 
   getImgPreview(index) {
     return this.imgUrl[index];

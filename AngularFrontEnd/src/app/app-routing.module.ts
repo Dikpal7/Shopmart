@@ -8,14 +8,23 @@ import { SignupComponent } from "./Component/UserProfile/signup/signup.component
 import { ResetPasswordComponent } from "./Component/UserProfile/reset-password/reset-password.component";
 import { AdminComponent } from "./Component/admin/admin.component";
 import { AuthGuard } from "./Services/Auth/auth.guard";
+import { DashboardComponent } from "./Component/dashboard/dashboard.component";
+import { ProductsComponent } from "./Component/Product/products/products.component";
+import { ItemsResolverService } from "./Services/Resolver/items-resolver.service";
+import { ProductDetailComponent } from "./Component/Product/product-detail/product-detail.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "app", pathMatch: "full" },
+  { path: "", redirectTo: "app/dashboard", pathMatch: "full" },
   {
     path: "app",
     component: MegamenuComponent,
     resolve: { data: ProdResolverService },
     children: [
+      {
+        path: "dashboard",
+        component: DashboardComponent,
+        pathMatch: "full",
+      },
       {
         path: "login",
         component: LoginComponent,
@@ -31,6 +40,13 @@ const routes: Routes = [
         path: "admin",
         component: AdminComponent,
         resolve: { data: ProdResolverService },
+        pathMatch: "full",
+      },
+
+      {
+        path: "items/:category",
+        component: ProductsComponent,
+        resolve: { data: ItemsResolverService },
         pathMatch: "full",
       },
     ],

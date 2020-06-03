@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, pipe } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Product } from "src/app/Model/Product";
-import { map } from "rxjs/operators";
 import { ToastrService } from "ngx-toastr";
 
 @Injectable({
@@ -28,5 +27,9 @@ export class ProdService {
         else this.toastr.error("Error while adding Product!", "Shopmart");
         return res.success;
       });
+  }
+
+  getAllProducts(): Observable<any> {
+    return this.http.get(`${this.url}/items`);
   }
 }

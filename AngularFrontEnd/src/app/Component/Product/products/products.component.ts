@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Product } from "src/app/Model/Product";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {Product} from "src/app/Model/Product";
+import {ProdService} from "../../../Services/DataServices/prod.service";
 
 @Component({
   selector: "app-products",
@@ -9,19 +10,21 @@ import { Product } from "src/app/Model/Product";
 })
 export class ProductsComponent implements OnInit {
   imgSrc: any[];
-  data: Product[];
+  brandWiseProduct: Product[];
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private prodService: ProdService) {
+  }
 
   ngOnInit() {
-    this.data = this.activatedRoute.snapshot.data.data;
-    let category = this.activatedRoute.snapshot.paramMap.get("category");
-    console.log(category);
+    let allData = this.activatedRoute.snapshot.data.data;
+    let categoryId = this.activatedRoute.snapshot.paramMap.get("categoryId");
+    let brandId = this.activatedRoute.snapshot.paramMap.get("brandId");
+    this.prodService.currentData.subscribe(data => this.brandWiseProduct = data);
   }
 
   getImgArrayLenght(index) {
-    if (this.data[index] != null && this.data[index].prodImagesList != null)
-      return this.data[index].prodImagesList.length > 0;
+    if (this.brandWiseProduct[index] != null && this.brandWiseProduct[index].prodImagesList != null)
+      return this.brandWiseProduct[index].prodImagesList.length > 0;
     else return false;
   }
 }

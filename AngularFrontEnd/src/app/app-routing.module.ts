@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { MegamenuComponent } from "./Component/Megamenu/megamenu.component";
 import { ProdResolverService } from "./Services/Resolver/prod-resolver.service";
-import { AppComponent } from "./app.component";
 import { LoginComponent } from "./Component/UserProfile/login/login.component";
 import { SignupComponent } from "./Component/UserProfile/signup/signup.component";
 import { ResetPasswordComponent } from "./Component/UserProfile/reset-password/reset-password.component";
@@ -44,7 +43,13 @@ const routes: Routes = [
       },
 
       {
-        path: "items/:category",
+        path: "items/:categoryId/:brandId",
+        component: ProductsComponent,
+        resolve: { data: ItemsResolverService },
+        pathMatch: "full",
+      },
+      {
+        path: "items/:categoryId/:brandId/:prodId",
         component: ProductsComponent,
         resolve: { data: ItemsResolverService },
         pathMatch: "full",

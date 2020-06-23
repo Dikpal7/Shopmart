@@ -1,159 +1,160 @@
-<div style="overflow-y: hidden;">
-  <div class="container">
-    <nav class="navbar fixed-top navbar-expand-sm navbar-primary bg-primary">
-      <div class="container">
-        <a class="navbar-brand text-white" href="">Shopmart</a>
-        <form class="form-inline mr-5">
-          <div class="input-group" style="width: 550px;">
+<div style = "overflow-y: hidden;">
+  <div class = "container">
+    <nav class = "navbar fixed-top navbar-expand-sm navbar-primary bg-primary">
+      <div class = "container">
+        <a class = "navbar-brand text-white" href = "">Shopmart</a>
+        <form class = "form-inline mr-5">
+          <div class = "input-group" style = "width: 550px;">
             <input
-              type="search"
-              class="form-control"
-              placeholder="search for products, brands and more"
+              class = "form-control"
+              placeholder = "search for products, brands and more"
+              type = "search"
             />
             <span
-              class="input-group-append input-group-append-btn p-0 bg-white"
+              class = "input-group-append input-group-append-btn p-0 bg-white"
             >
               <button
-                class="btn"
-                style="border: none; background: transparent;"
+                class = "btn"
+                style = "border: none; background: transparent;"
               >
-                <i class="fa fa-search" aria-hidden="true"></i>
+                <i aria-hidden = "true" class = "fa fa-search"></i>
               </button>
             </span>
           </div>
         </form>
-        <ul class="navbar-nav">
-          <li class="nav-item mr-4" *ngIf="!isLoggedIn">
+        <ul class = "navbar-nav">
+          <li *ngIf = "!isLoggedIn" class = "nav-item mr-4">
             <button
-              type="button"
-              class="btn btn-outline-light"
-              (click)="loginBtn()"
+              (click) = "loginBtn()"
+              class = "btn btn-outline-light"
+              type = "button"
             >
               Login
             </button>
           </li>
-          <li class="nav-item dropdown mr-4" *ngIf="isLoggedIn">
+          <li *ngIf = "isLoggedIn" class = "nav-item dropdown mr-4">
             <a
-              href="#"
-              class="nav-link dropdown-toggle text-white"
-              data-toggle="dropdown"
-              >{{ user.username }}</a
+              class = "nav-link dropdown-toggle text-white"
+              data-toggle = "dropdown"
+              href = "#"
+            >{{ user.username }}</a
             >
-            <div class="dropdown-menu">
-              <table class="table table-sm table-hover my-0">
+            <div class = "dropdown-menu">
+              <table class = "table table-sm table-hover my-0">
                 <tbody>
-                  <tr>
-                    <td>
-                      <a href="" class="nav-link text-dark"
-                        ><i class="fas fa-user mr-3 text-primary"></i>Profile</a
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="" class="nav-link text-dark"
-                        ><i class="fas fa-shopping-bag mr-3 text-primary"></i
-                        >Orders</a
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="" class="nav-link text-dark"
-                        ><i class="fas fa-heart mr-3 text-primary"></i
-                        >Wishlist</a
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-transparent text-dark"
-                        (click)="logout()"
-                      >
-                        <i class="fas fa-sign-out-alt mr-3 text-primary"></i
-                        >Logout
-                      </button>
-                    </td>
-                  </tr>
+                <tr>
+                  <td>
+                    <a class = "nav-link text-dark" href = ""
+                    ><i class = "fas fa-user mr-3 text-primary"></i>Profile</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class = "nav-link text-dark" href = ""
+                    ><i class = "fas fa-shopping-bag mr-3 text-primary"></i
+                    >Orders</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class = "nav-link text-dark" href = ""
+                    ><i class = "fas fa-heart mr-3 text-primary"></i
+                    >Wishlist</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button
+                      (click) = "logout()"
+                      class = "btn btn-transparent text-dark"
+                      type = "button"
+                    >
+                      <i class = "fas fa-sign-out-alt mr-3 text-primary"></i
+                      >Logout
+                    </button>
+                  </td>
+                </tr>
                 </tbody>
               </table>
             </div>
           </li>
-          <li class="nav-item dropdown mr-4">
+          <li class = "nav-item dropdown mr-4">
             <a
-              class="nav-link dropdown-toggle text-white"
-              data-toggle="dropdown"
-              href="#"
-              >More</a
+              class = "nav-link dropdown-toggle text-white"
+              data-toggle = "dropdown"
+              href = "#"
+            >More</a
             >
-            <div class="dropdown-menu justify-content-center">
-              <table class="table table-sm table-hover my-0">
+            <div class = "dropdown-menu justify-content-center">
+              <table class = "table table-sm table-hover my-0">
                 <tbody>
-                  <tr>
-                    <td>
-                      <a href="" class="nav-link text-dark"
-                        ><i class="fas fa-bell mr-3 text-primary"></i
-                        >Notifications</a
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="" class="nav-link text-dark"
-                        ><i class="fas fa-question-circle mr-3 text-primary"></i
-                        >24*7 Support</a
-                      >
-                    </td>
-                  </tr>
+                <tr>
+                  <td>
+                    <a class = "nav-link text-dark" href = ""
+                    ><i class = "fas fa-bell mr-3 text-primary"></i
+                    >Notifications</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class = "nav-link text-dark" href = ""
+                    ><i class = "fas fa-question-circle mr-3 text-primary"></i
+                    >24*7 Support</a
+                    >
+                  </td>
+                </tr>
                 </tbody>
               </table>
             </div>
           </li>
-          <li class="nav-item" *ngIf="isLoggedIn">
-            <a href="" class="nav-link text-white"
-              ><i class="fab fa-opencart text-white mr-2"></i>Cart</a
+          <li *ngIf = "isLoggedIn" class = "nav-item">
+            <a class = "nav-link text-white" href = ""
+            ><i class = "fab fa-opencart text-white mr-2"></i>Cart</a
             >
           </li>
         </ul>
       </div>
     </nav>
     <!-- Navbar MegaMenu -->
-    <div class="navbar pb-0 mt-5" id="smallNav" *ngIf="productCategory != null">
-      <div class="dropdown" id="dropdown" *ngFor="let data of productCategory">
-        <button class="dropbtn dropdown-toggle text-dark">
+    <div *ngIf = "productCategory != null" class = "navbar pb-0 mt-5" id = "smallNav">
+      <div *ngFor = "let data of productCategory" class = "dropdown" id = "dropdown">
+        <button class = "dropbtn dropdown-toggle text-dark">
           <small>{{ data.section }}</small>
         </button>
-        <div class="dropdown-content mt-0">
-          <div class="row">
-            <div class="col">
+        <div class = "dropdown-content mt-0">
+          <div class = "row">
+            <div class = "col">
               <table
-                class="table table-sm table-borderless m-3"
-                *ngFor="let cat of data.categoryList"
+                *ngFor = "let cat of data.categoryList"
+                class = "table table-sm table-borderless m-3"
               >
                 <thead>
-                  <tr>
-                    <th class="mr-1">
-                      <small class="font-weight-bold"
-                        >{{ cat.category }}
-                        <i class="fa fa-caret-down" aria-hidden="true"></i
+                <tr>
+                  <th class = "mr-1">
+                    <small class = "font-weight-bold"
+                    >{{ cat.category }}
+                      <i aria-hidden = "true" class = "fa fa-caret-down"></i
                       ></small>
-                    </th>
-                  </tr>
+                  </th>
+                </tr>
                 </thead>
-                <tbody *ngFor="let brand of cat.brandsList">
-                  <tr>
-                    <th>
-                      <small
-                        ><a
-                          class="text-dark"
-                          [routerLink]="['items', cat.category]"
-                          >{{ brand.brand }}</a
-                        ></small
-                      >
-                    </th>
-                  </tr>
+                <tbody *ngFor = "let brand of cat.brandsList">
+                <tr>
+                  <th>
+                    <small
+                    ><a
+                      (click) = "getLatestValueOnClick(brand.productList)"
+                      [routerLink] = "['items', cat.id, brand.id]"
+                      class = "text-dark"
+                    >{{ brand.brand }}</a
+                    ></small
+                    >
+                  </th>
+                </tr>
                 </tbody>
               </table>
             </div>

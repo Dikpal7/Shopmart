@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from "../../Services/Auth/auth.service";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../Services/Auth/auth.service";
+import {ProdService} from "../../Services/DataServices/prod.service";
+import {Product} from "../../Model/Product";
 
 @Component({
   selector: "app-megamenu",
@@ -15,8 +17,10 @@ export class MegamenuComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private prodService: ProdService
+  ) {
+  }
 
   ngOnInit() {
     this.isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -32,5 +36,9 @@ export class MegamenuComponent implements OnInit {
 
   public loginBtn() {
     this.router.navigate(["app/login"]);
+  }
+
+  getLatestValueOnClick(prodList: Product[]) {
+    this.prodService.changeProductValue(prodList);
   }
 }

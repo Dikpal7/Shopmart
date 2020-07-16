@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.ShoppingBackEnd.Model.Audit.DateAudit;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("All")
 @Entity
 @Table(name = "ConfirmationToken", uniqueConstraints = { @UniqueConstraint(columnNames = { "confirmation_token" }) })
 public class ConfirmationToken extends DateAudit {

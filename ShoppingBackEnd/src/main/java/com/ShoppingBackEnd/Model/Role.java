@@ -3,6 +3,7 @@ package com.ShoppingBackEnd.Model;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 
+@SuppressWarnings("ALL")
 @Entity
 @Table(name = "roles")
 public class Role {

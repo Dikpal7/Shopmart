@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ShoppingBackEnd.Model.CategoryItems;
-import com.ShoppingBackEnd.Model.MainCategory;
-import com.ShoppingBackEnd.Model.SubCategory;
+import com.ShoppingBackEnd.Model.Brand;
+import com.ShoppingBackEnd.Model.Category;
+import com.ShoppingBackEnd.Model.Product;
+import com.ShoppingBackEnd.Model.Section;
+import com.ShoppingBackEnd.Service.AdminService;
 import com.ShoppingBackEnd.Service.ProductService;
 import com.ShoppingBackEnd.payload.ApiResponse;
 import com.ShoppingBackEnd.payload.CommonResponse;
@@ -23,42 +25,58 @@ public class ProductController {
 	@Autowired
 	ProductService _productService;
 
-	@GetMapping("/mainCategory")
-	public ResponseEntity<CommonResponse<List<MainCategory>>> getMainCategory() {
+	@Autowired
+	AdminService _adminService;
+
+	@GetMapping("/section")
+	public ResponseEntity<CommonResponse<List<Section>>> getSections() {
 		try {
-			return new ResponseEntity<CommonResponse<List<MainCategory>>>(
-					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getMainCategory()),
+			return new ResponseEntity<CommonResponse<List<Section>>>(
+					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getSections()),
 					HttpStatus.OK);
 
 		} catch (Exception e) {
-			return new ResponseEntity<CommonResponse<List<MainCategory>>>(
+			return new ResponseEntity<CommonResponse<List<Section>>>(
 					new CommonResponse<>(new ApiResponse(false, e.getMessage()), null), HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@GetMapping("/subCategory")
-	public ResponseEntity<CommonResponse<List<SubCategory>>> getSubCategory() {
+	@GetMapping("/category")
+	public ResponseEntity<CommonResponse<List<Category>>> getCategories() {
 		try {
-			return new ResponseEntity<CommonResponse<List<SubCategory>>>(
-					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getSubCategory()),
+			return new ResponseEntity<CommonResponse<List<Category>>>(
+					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getCategories()),
 					HttpStatus.OK);
 
 		} catch (Exception e) {
-			return new ResponseEntity<CommonResponse<List<SubCategory>>>(
+			return new ResponseEntity<CommonResponse<List<Category>>>(
 					new CommonResponse<>(new ApiResponse(false, e.getMessage()), null), HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@GetMapping("/categoryItems")
-	public ResponseEntity<CommonResponse<List<CategoryItems>>> getCategoryItems() {
+	@GetMapping("/brand")
+	public ResponseEntity<CommonResponse<List<Brand>>> getBrands() {
 		try {
-			return new ResponseEntity<CommonResponse<List<CategoryItems>>>(
-					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getCategoryItems()),
-					HttpStatus.OK);
+			return new ResponseEntity<CommonResponse<List<Brand>>>(
+					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getBrands()), HttpStatus.OK);
 
 		} catch (Exception e) {
-			return new ResponseEntity<CommonResponse<List<CategoryItems>>>(
+			return new ResponseEntity<CommonResponse<List<Brand>>>(
 					new CommonResponse<>(new ApiResponse(false, e.getMessage()), null), HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@GetMapping("/items")
+	public ResponseEntity<CommonResponse<List<Product>>> getProducts() {
+		try {
+			return new ResponseEntity<CommonResponse<List<Product>>>(
+					new CommonResponse<>(new ApiResponse(true, "success"), _productService.getAllProduct()),
+					HttpStatus.OK);
+
+		} catch (Exception e) {
+			return new ResponseEntity<CommonResponse<List<Product>>>(
+					new CommonResponse<>(new ApiResponse(false, e.getMessage()), null), HttpStatus.NOT_FOUND);
+		}
+	}
+
 }

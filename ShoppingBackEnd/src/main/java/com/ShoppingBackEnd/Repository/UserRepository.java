@@ -9,17 +9,18 @@ import org.springframework.stereotype.Repository;
 import com.ShoppingBackEnd.Model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByEmail(String email);
 
-    Optional<User> findByUsernameOrEmail(String username, String email);
+	Optional<User> findByUsernameOrEmail(String username, String email);
 
-    List<User> findByIdIn(List<Long> userIds);
+	List<User> findByIdIn(List<Long> userIds);
 
-    Optional<User> findByUsername(String username);
+	Optional<User> findByUsername(String username);
 
-    Boolean existsByUsername(String username);
+	Boolean existsByUsername(String username);
 
-    Boolean existsByEmail(String email);
+	Boolean existsByEmail(String email);
+
 }

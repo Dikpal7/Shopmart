@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../Services/Auth/auth.service";
 import {ProdService} from "../../Services/DataServices/prod.service";
 import {Product} from "../../Model/Product";
+import {Brand} from "../../Model/Brand";
 
 @Component({
   selector: "app-megamenu",
@@ -38,7 +39,7 @@ export class MegamenuComponent implements OnInit {
     this.router.navigate(["app/login"]);
   }
 
-  getLatestValueOnClick(prodList: Product[]) {
-    this.prodService.changeProductValue(prodList);
+  public getLatestValueOnClick(brandObj: Brand) {
+    this.prodService.changeProductValue(brandObj);
   }
 }

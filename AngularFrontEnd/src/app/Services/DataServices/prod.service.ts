@@ -4,13 +4,14 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "src/environments/environment";
 import {Product} from "src/app/Model/Product";
 import {ToastrService} from "ngx-toastr";
+import {Brand} from "../../Model/Brand";
 
 @Injectable({
   providedIn: "root",
 })
 export class ProdService {
 
-  public productsData = new BehaviorSubject<Product[]>([]);
+  public productsData = new BehaviorSubject<Brand>(new Brand());
   currentData = this.productsData.asObservable();
 
   private url = `${environment.apiBaseUrl}/product`;
@@ -20,8 +21,8 @@ export class ProdService {
   }
 
   // By subjectBehaviour Changing value on clink of link.
-  changeProductValue(updatedProdList: Product[]) {
-    this.productsData.next(updatedProdList);
+  changeProductValue(brandObj: Brand) {
+    this.productsData.next(brandObj);
   }
 
   getMainCategory(): Observable<any> {

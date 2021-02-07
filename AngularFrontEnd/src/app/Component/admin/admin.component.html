@@ -133,7 +133,7 @@
                 <div
                   formArrayName="prodAttributeList"
                   *ngFor="
-                    let item of adminForm.get('prodAttributeList').controls;
+                    let item of adminForm.get('prodAttributeList')?.controls;
                     let i = index
                   "
                 >
